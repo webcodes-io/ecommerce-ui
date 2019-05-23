@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <a class="navbar-brand custom-navbar-label" href="/products"><img class="custom-navbar-image" src="assets/images/shopping_cart.png"/>
+    <!--<span class="hidden-md-down">e-commerce</span>-->
+  </a>
+
+  <a *ngIf="(cart$ | async)" [routerLink]="['/cart']" class="nav-link">Cart<span> {{(cart$ | async)?.totalAmount}}</span></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" [collapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <!--<li *ngFor="let taxon of taxonList" class="">-->
+          <!--<a (click)="selectTaxon(taxon)" href="javascript:void(0)">{{taxon.name}}-->
+            <!--<span class="sr-only">(current)</span>-->
+          <!--</a>-->
+        <!--</li>--> 
+        <li *ngIf="user" class="nav-item"><span class="d-flex p-2 user-greeting">{{ user?.userName }}</span></li>
+        <li *ngIf="!user?.userName" class="nav-item"><a [routerLink]="['/register']" class="nav-link">Register</a></li>
+        <li *ngIf="user?.userName" class="nav-item"><a [routerLink]="['/logout']" class="nav-link">Logout</a></li>
+        <li *ngIf="!user?.userName" class="nav-item"><a [routerLink]="['/login']" class="nav-link">Login</a></li>
+        <li class="nav-item"><a  [routerLink]="['/cart']" class="nav-link">Cart<span> {{(cart$ | async)?.totalAmount}}</span></a></li>
+        <li class="nav-item"><a  [routerLink]="['/create-product']" class="nav-link">Create product<span> {{(cart$ | async)?.totalAmount}}</span></a></li>
+      </ul>
+    </div>
+</nav>

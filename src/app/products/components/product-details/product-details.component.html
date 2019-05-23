@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <h1 class="current-page text-center">Product details page. Add item to your cart.</h1>
+  </div>
+  <div class="row">
+    <div class="col-6">
+          <a [routerLink]="['/products']">
+            <span class="">Back to products</span>
+          </a>
+    </div>
+  </div>
+  <div class="row thumbnail">
+    <div class="col-sm-4">
+        <img src="assets/images/teapod.jpeg" class="product-image" alt="product image">
+    </div>
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col-sm-12 product-name">
+          {{(productDetail$  | async)?.name}}
+        </div>
+        <div class="col-sm-12 product-description">
+          {{(productDetail$ | async)?.description}}
+        </div>
+        <div class="col-sm-12 product-price">
+          {{(productDetail$  | async)?.price}}
+        </div>
+      </div>
+      <div class="row product-rating">
+        <div class="col-sm-12">
+          <span class="align-bottom">
+            <i class="glyphicon glyphicon-star-empty"></i>
+            <i class="glyphicon glyphicon-star-empty"></i>
+            <i class="glyphicon glyphicon-star-empty"></i>
+            <i class="glyphicon glyphicon-star-empty"></i>
+            <i class="glyphicon glyphicon-star-empty"></i>
+          </span>
+        </div>
+      </div>
+      <div class="row product-add-to-card">
+        <div class="col-12 text-center">
+          <button (click)="addToCart()" class="btn btn-primary btn-sm" type="button">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<alert type="danger" *ngIf='show && (productDetail$ | async)?.error'>
+  <strong>{{(productDetail$ | async)?.error}} <a href="/logout"> Login </a> </strong>
+</alert>

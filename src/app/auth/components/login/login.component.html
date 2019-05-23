@@ -1,0 +1,15 @@
+<div class="form-frame">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="userName">Login:</label>
+      <input type="email" formControlName="userName" class="form-control" id="userName" placeholder="user name">
+      <small id="loginHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" class="form-control" id="password" placeholder="password">
+    </div>
+    <button [disabled]="!loginForm.value.password || !loginForm.value.userName || loginForm.status!=='VALID'" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div>{{errorMessage}}</div>
