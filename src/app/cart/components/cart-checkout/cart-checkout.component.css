@@ -1,0 +1,29 @@
+.checkout-product-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+.checkout-product-name {
+     color:#0066c0;
+}
+.checkout-product-description {
+     color:#0066c0;
+}
+.checkout-product-price {
+     color:indianred;
+}
+.checkout-confirmation {
+    font-size: 1.1rem;
+    color:white;
+    background: deepskyblue;
+    width: 100%;
+    margin: 1em 0 1em 0;
+    border-radius: 1em;
+}
+.checkout-verification-message {
+    background: deepskyblue;
+    color: white;
+    width: 100%;
+    font-size: 1.1em;
+    margin: 1em 0 1em 0;
+    border-radius: 1em;
+}

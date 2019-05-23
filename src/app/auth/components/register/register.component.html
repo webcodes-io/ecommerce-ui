@@ -1,0 +1,27 @@
+<div class="form-frame">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="userName">Login:</label>
+      <input formControlName="userName"  class="form-control" [ngClass]="{'invalid-input': !registerForm.value.userName}" id="userName" placeholder="user name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input formControlName="email" class="form-control" [ngClass]="{'invalid-input': !registerForm.value.email}" id="email" placeholder="email">
+      <small id="loginHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile:</label>
+      <input formControlName="mobile" class="form-control" [ngClass]="{'invalid-input': !registerForm.value.mobile}" id="mobile" placeholder="mobile">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input formControlName="password" class="form-control" [ngClass]="{'invalid-input': !registerForm.value.password}" id="password" placeholder="password">
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirm password:</label>
+      <input formControlName="confirmPassword" class="form-control" [ngClass]="{'invalid-input': !registerForm.value.confirmPassword}" id="confirm_password" placeholder="confirm password">
+    </div>
+    <button [disabled]="registerForm.status !=='VALID' || !registerForm.value.userName || 
+            !registerForm.value.password || !registerForm.value.confirmPassword" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
