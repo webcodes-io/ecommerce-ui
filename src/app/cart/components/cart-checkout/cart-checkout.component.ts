@@ -19,7 +19,7 @@ import { Payments } from '../../enums/payments.enum';
 export class CartCheckoutComponent implements OnInit {
 
   public productsInCart: Observable<Order>;
-  private checkOutConfirmationStatus: boolean = false;
+  public checkOutConfirmationStatus: boolean = false;
   public methodsOfPayment: Observable<PaymentMethods>;
   public error = false;
   private payment = {};
