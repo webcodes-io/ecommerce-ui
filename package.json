@@ -14,7 +14,7 @@
     "build--prod": "ng build --prod --no-sourcemap --stats-json && npm run sw",
     "sw": "sw-precache --root=dist --config=sw-precache-config.js",
     "static-serve": "cd dist && live-server --port=4200 --host=localhost --entry-file=/index.html",
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --prod",
     "heroku-postbuild": "ng build --prod"
   },
   "private": true,
