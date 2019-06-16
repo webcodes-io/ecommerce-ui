@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "./node_modules/@angular/cli/bin/ng",
     "start-mock": "ng serve --environment=mock",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
