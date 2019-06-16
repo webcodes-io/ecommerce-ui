@@ -58,6 +58,7 @@
     "@types/jasmine": "2.5.38",
     "@types/morris.js": "^0.5.6",
     "@types/node": "~6.0.60",
+    "express": "^4.17.0",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
     "karma": "^1.4.1",
