@@ -9,9 +9,10 @@ import { AppStates } from '../../store/states/app.states';
 import { LoginService } from "../../../core/services/login.service";
 import { Products, ProductDetails} from '../../models/products.model';
 
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/switchMap';
+import { Observable } from "rxjs";
+
 import {productsReducer} from '../../store/reducers/reducers';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -34,14 +35,14 @@ export class ProductDetailsComponent implements OnInit {
       if (store && store['productsReducer']) {
         return store['productsReducer'];
       }
-    }).map(res => {
+    }).pipe(map((res: any) => {
       if (res && res.uiStateProductDetails) {
         this.productId = res.uiStateProductDetails.id;
         return res.uiStateProductDetails;
       } else {
         return;
       }
-    });
+    }));
   }
 
   addToCart() {

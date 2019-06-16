@@ -11,6 +11,8 @@ import { LoginModule } from './auth/login.module';
 import { LayoutModule } from './layout/layout.module';
 import { CartModule } from './cart/cart.module';
 import { reducer } from './app.reducers';
+import { CollapseModule } from "ngx-bootstrap/collapse";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // no need to place actions to providers:
 
@@ -32,7 +34,9 @@ import { reducer } from './app.reducers';
     CoreModule,
     LayoutModule,
     CartModule,
-    StoreModule.provideStore(reducer, INITIAL_STORE_DATA)
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
+    StoreModule.forRoot(reducer, INITIAL_STORE_DATA)
   ],
   providers: [
   ],

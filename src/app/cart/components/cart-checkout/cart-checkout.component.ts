@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import {Component, OnInit, Inject} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -6,7 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { GetCurrentOrderFromStore, CheckOut } from '../../store/actions/cart.actions';
 import { AppStates } from '../../store/states/cart.states';
 import { Order, CheckoutInfo, PaymentMethods } from '../../models/cart.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 import { CartService } from '../../../core/services/cart.service';
 import { Payments } from '../../enums/payments.enum';
@@ -19,7 +21,7 @@ import { Payments } from '../../enums/payments.enum';
 export class CartCheckoutComponent implements OnInit {
 
   public productsInCart: Observable<Order>;
-  public checkOutConfirmationStatus: boolean = false;
+  private checkOutConfirmationStatus: boolean = false;
   public methodsOfPayment: Observable<PaymentMethods>;
   public error = false;
   private payment = {};
@@ -40,33 +42,33 @@ export class CartCheckoutComponent implements OnInit {
           return store['cartReducer'];
         }
       }
-    ).map(data => {
+    ).pipe(map(data => {
         if (data) {
           return data.currentOrderInCart;
         }
-    }).subscribe(res => { 
+    })).subscribe(res => { 
       this.productsInCart = res.itemList;
     });
 
     // app store for total amount
     this.store.select( store => {
       return store['cartReducer'];
-    }).map(res => {
+    }).pipe(map(res => {
       if (res && res.currentOrderInCart) {
         return res.currentOrderInCart;
       }
-    }).subscribe(cartInfo => { 
+    })).subscribe(cartInfo => { 
       this.totalAmount = cartInfo.totalAmount;
       this.payment = {amount: cartInfo.totalAmount}
     });
     //checkout confirmation status
     this.store.select( store => {
       return store['cartReducer'];
-    }).map(res => {
+    }).pipe(map(res => {
       if (res && res.checkOutConfirmationStatus) {
         return res.checkOutConfirmationStatus;
       }
-    }).subscribe(cartInfo => { 
+    })).subscribe(cartInfo => { 
       this.checkOutConfirmationStatus = cartInfo;
     });
   }
@@ -78,7 +80,7 @@ export class CartCheckoutComponent implements OnInit {
     // else
     //   this.router.navigate(['/login']);
     this.cartService.getMethodsOfPayment()
-    .subscribe(res => {
+    .subscribe((res :any) => {
       this.methodsOfPayment = res.payments;
     },
     err => console.error(err));

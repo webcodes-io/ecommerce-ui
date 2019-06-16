@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -5,7 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GetCurrentOrderFromStore } from '../../store/actions/cart.actions';
 import { AppStates } from '../../store/states/cart.states';
 import { Order } from '../../models/cart.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 
 @Component({
@@ -27,11 +29,11 @@ export class CartDetailsComponent implements OnInit {
           return store['cartReducer'];
         }
       }
-    ).map(data => {
+    ).pipe(map(data => {
         if (data) {
           return data.currentOrderInCart;
         }
-    }).subscribe(res => { 
+    })).subscribe(res => { 
       this.productsInCart = res.itemList;
     });
   }

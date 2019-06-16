@@ -1,12 +1,12 @@
-import {Component, OnInit, Inject, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/map';
-
 import { AppStates } from '../../store/states/app.states';
 import { ProductsService } from '../../../core/services/products.service';
 import { CreateNewProduct } from '../../store/actions/products.actions';
+
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'create-product',
@@ -38,11 +38,13 @@ export class CreateProductComponent implements OnInit {
               return res['productsReducer'];
             }
           }
-        ).map(v => {
+        ).pipe(
+          map(v => {
             if (v) {
               return v.storeData;
             }
-        }).subscribe(
+          })
+        ).subscribe(
           res => {
             console.log('create product res: ', res);
             //  this.router.navigate(['/products']); 
@@ -63,7 +65,9 @@ export class CreateProductComponent implements OnInit {
           const fileReader = new FileReader();
           fileReader.readAsDataURL(this.image.nativeElement.files[0]);
           fileReader.onload = () => {
-            this.fileDataUrl = fileReader.result.split(',')[1];
+            if( typeof fileReader.result === "string") {
+              this.fileDataUrl = fileReader.result.split(',')[1];
+            }
           }
         }
       }
