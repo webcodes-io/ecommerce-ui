@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import {Component, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -5,7 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GetProducts } from '../../store/actions/products.actions';
 import { AppStates } from '../../store/states/app.states';
 import { errorState, Products } from '../../models/products.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 
 @Component({
@@ -28,11 +30,11 @@ export class ProductListComponent implements OnInit {
           return res['productsReducer'];
         }
       }
-    ).map(v => {
+    ).pipe(map((v: any) => {
         if (v) {
           return v.storeData;
         }
-    });
+    }));
   }
 
   ngOnInit() {

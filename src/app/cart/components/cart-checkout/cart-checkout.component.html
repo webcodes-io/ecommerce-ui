@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid default-page-background">
   <div class="row">
     <div class="col-12">
       <a  [routerLink]="['/cart']"><span class="glyphicon glyphicon-home"></span>Back to cart</a>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-lg-12" >
       <div class="row thumbnail" *ngFor='let product of productsInCart'>
-        <div class="col-3">
+        <div class="col-3 text-center">
             <img class="checkout-product-image" src="/assets/images/teapod.jpeg" alt="{{product.product.name}}">
         </div>
         <div class="col-9">

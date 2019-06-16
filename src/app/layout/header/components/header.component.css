@@ -9,3 +9,93 @@
 .custom-navbar-label {
   color:dodgerblue;
 }
+
+@keyframes open-menu {
+   from {transform:rotate(0deg);}
+   to {transform:rotate(90deg);}
+ }
+.open-menu-button {
+  animation-name: open-menu;
+  animation-duration: 0.4s;
+  transform:rotate(90deg);
+  border: none;
+}
+.open-menu-button:hover {
+  background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.5));
+}
+/* mobile menu button open & close */
+@keyframes close-menu-button {
+  from {transform:rotate(90deg);}
+  to {transform:rotate(0deg);}
+}
+.close-menu-button {
+  animation-name: close-menu-button;
+  height: 50px;
+  width: 55px;
+  animation-duration: 0.4s;
+  transform:rotate(0deg);
+  border: none;
+}
+
+@keyframes open-menu-button {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(90deg);}
+}
+.open-menu-button {
+  animation-name: open-menu-button;
+  height: 50px;
+  width: 55px;
+  animation-duration: 1s;
+  transform:rotate(90deg)
+}
+
+/* mobile menu open & close */
+
+@keyframes close-menu {
+  from {height: auto;}
+  to   {height: 0px; }
+}
+.close-menu {
+  animation-name: close-menu;
+  animation-duration: 0s;
+  height: 0px;
+}
+@keyframes open-menu {
+  from {height: 0px;  }
+  to   {height: auto; }
+}
+.open-menu {
+  animation-name: open-menu;
+  animation-duration: 0s;
+  height: auto;
+  font-family: 'Overpass', sans-serif;
+  font-size: 20px;
+  margin-left: 15px;
+  color: deepskyblue;
+}
+
+.nav-custom-styles {
+  box-shadow: 1px 1px 5px lightgrey;
+  background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.5));
+}
+
+@media only screen and (max-width: 975px) {
+  .custom-nav-link {
+    letter-spacing: 10px;
+    padding-left: 10px;
+    position: relative;
+    border-radius: 12px;
+    margin: 2px 0 2px;
+    font-family: Overpass;
+    font-size: 20px;
+    font-weight: 800;
+    color: steelblue !important;
+  }
+  .custom-nav-link:hover {
+    background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.5));
+  }
+}
+
+.custom-menu-dropdown{
+  margin: 0px;
+}
