@@ -1,10 +1,13 @@
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppStates } from '../../../products/store/states/app.states';
 import { AppCookieService } from '../../../core/services/cookie.service';
-import 'rxjs/add/operator/map'
+import {transition, trigger, style, animate} from '@angular/animations';
+
 
 @Component({
   selector: 'app-header',
@@ -21,21 +24,21 @@ export class HeaderComponent implements OnInit {
     // user properties for header
     this.store.select( store => {
       return store['userLoginReducer'];
-    }).map(res => {
+    }).pipe(map((res: any) => {
       if (res && res.userDetails) {
         return res.userDetails;
       }
-    }).subscribe(resp => {
+    })).subscribe(resp => {
       this.user = resp;
     });
     // cart properties for header
     this.cart$ = this.store.select( store => {
       return store['cartReducer'];
-    }).map(res => {
+    }).pipe(map((res: any) => {
       if (res && res.currentOrderInCart) {
         return res.currentOrderInCart;
       }
-    });
+    }));
   }
   
   logout() {

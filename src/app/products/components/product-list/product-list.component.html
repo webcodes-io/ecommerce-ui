@@ -1,26 +1,39 @@
-<div class="container-fluid">
+<div class="container-fluid default-page-background">
   <div class="row justify-content-center">
     <h1 class="current-page text-center">Product list page. Click on any item.</h1>
   </div>
-  <div class="row">
-    <div class="col-lg-10" *ngIf="!error">
-      <div class="row thumbnail" *ngFor='let product of products$ | async; last as isLast '>
-        <div class="col-sm-4">
+  <div class="row products-parent-block">
+    <div class="col-12" *ngIf="!error">
+      <div class="container thumbnail" *ngFor='let product of products$ | async; last as isLast '>
+
+      <div class="row">
+        <div class="col-12 product-name text-center">
+          {{product.name}}
+        </div>
+      </div>
+
+      <div class="row align-items-center ">
+
+        <div class="col-sm-4 text-center product-image">
           <a [routerLink]="['/details/' + product?.slug]" class="">
             <img class="product-image" src="/assets/images/teapod.jpeg" alt="{{product.name}}">
           </a>
         </div>
-        <div class="col-sm-8 float-right">
+
+        <div class="col-sm-8 float-right product-description">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 product-name">
-                {{product.name}}
-              </div>
               <div class="col-12 product-description">
-                {{product.description}}
+                <div class="row">
+                  <div class="col-5">Description: </div>
+                  <div class="col-7">{{product.description}}</div>
+                </div>
               </div>
               <div class="col-12 product-price">
-                $ {{product.price}}
+                <div class="row">
+                  <div class="col-5">Price:</div>
+                  <div class="col-7">$ {{product.price}}</div>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -34,7 +47,12 @@
             </div>
           </div>
         </div>
-          <div class="sm-screen-product-divider" *ngIf="!isLast"></div>
+
+        <div class="sm-screen-product-divider" *ngIf="!isLast"></div>
+
+      </div>
+
+
       </div>
     </div>
   </div>

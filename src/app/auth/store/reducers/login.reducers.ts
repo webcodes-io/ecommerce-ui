@@ -35,8 +35,6 @@ const registerUserSuccess = ( state , action): AppStates => {
 
 export const userLoginReducer: ActionReducer<AppStates> = (state: AppStates, action: ReducerClass): AppStates => {
   switch (action.type) {
-    case LOGIN_USER:
-      return state;
     case LOGIN_USER_SUCCESS:
       return loadUserCredentials(state, action);
     case REGISTER_USER:

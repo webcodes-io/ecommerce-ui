@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import {Component, OnInit, Inject} from '@angular/core';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -30,14 +32,14 @@ export class RegisterComponent implements OnInit {
               }
 
     ngOnInit() {
-      this.store.select( states => states['userLoginReducer'])
-      .map(data => {
+      this.store.select( states => states['userLoginReducer']).pipe(
+      map((data: any) => {
         if (data && data.registerUser) {
           return data.registerUser;
         } else {
           return ;
         }
-      })
+      }))
       .subscribe(res => {
         if (res && res.userName) {
           this.router.navigate(['/login']);

@@ -11,12 +11,20 @@ import { ProductsEffects } from './store/effects/products.effects';
 import { CoreModule } from '../core/core.module';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { AuthguardService } from '../core/services/authguard.service';
+import { productsReducer } from './store/reducers/reducers';
+import {StoreModule} from '@ngrx/store';
+
+// const routes: Routes = [
+//   {path: 'products', component: ProductListComponent, canActivate: [AuthguardService]},
+//   {path: 'details/:slug', component: ProductDetailsComponent, canActivate: [AuthguardService]},
+//   {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService]},
+//   // {path: '**', component: UsersListComponent}
+// ];
 
 const routes: Routes = [
-  {path: 'products', component: ProductListComponent, canActivate: [AuthguardService]},
-  {path: 'details/:slug', component: ProductDetailsComponent, canActivate: [AuthguardService]},
-  {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService]},
-  // {path: '**', component: UsersListComponent}
+  {path: 'products', component: ProductListComponent},
+  {path: 'details/:slug', component: ProductDetailsComponent},
+  {path: 'create-product', component: CreateProductComponent}
 ];
 
 @NgModule({
@@ -26,7 +34,8 @@ const routes: Routes = [
     FormsModule, 
     ReactiveFormsModule, 
     RouterModule.forChild(routes),
-    EffectsModule.run(ProductsEffects),
+    StoreModule.forFeature('productsReducer', productsReducer),
+    EffectsModule.forFeature([ProductsEffects]),
     AlertModule.forRoot()
   ],
   declarations: [

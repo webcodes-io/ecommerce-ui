@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppCookieService } from './cookie.service';
-
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CartService {
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private appCookieService: AppCookieService) { }
 
   getOrderNumber(data: any): Observable<any> {
     const token = this.appCookieService.getTokenFromCookie();
     if (token) {
-      const options = new RequestOptions();
-      options.headers = new Headers({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-
+      const options = {
+        headers: headers
+      };
       return this.http.post(
         environment.REST_API + '/rest/api/order/add', { 'userId': data.payload.id }, options
-      ).map((res: Response) => {
-        const respObj = res.json();
-        this.appCookieService.storeOrderNumberInCookie(respObj);
-        return respObj;
-      });
+      ).pipe(
+        map((res: Response) => {
+          const respObj = res;
+          this.appCookieService.storeOrderNumberInCookie(respObj);
+          return respObj;
+        })
+      );
     }
   }
 
@@ -34,12 +37,13 @@ export class CartService {
     const token = this.appCookieService.getTokenFromCookie();
     const orderNumber = this.appCookieService.getOrderNumberFromCookie();
     if (token && orderNumber) {
-      const options = new RequestOptions();
-      options.headers = new Headers({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-
+      const options = {
+        headers: headers
+      };
       return this.http.post(
         environment.REST_API + `/rest/api/item/add/${orderNumber}`, 
         { 
@@ -47,29 +51,34 @@ export class CartService {
           'productId': data.payload.id
         },
         options
-      ).map((res: Response) => {
-        const respObj = res.json();
-        return respObj;
-      });
+      ).pipe(
+        map((res: Response) => {
+          const respObj = res;
+          return respObj;
+        })
+      );
     }
   }
   productsShoppingCart(): Observable<any> {
     const token = this.appCookieService.getTokenFromCookie();
     const orderNumber = this.appCookieService.getOrderNumberFromCookie();
     if (token && orderNumber) {
-      const options = new RequestOptions();
-      options.headers = new Headers({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-
+      const options = {
+        headers: headers
+      };
       return this.http.get(
         environment.REST_API + `/rest/api/order/number/${orderNumber}`,
         options
-      ).map((res: Response) => {
-        const respObj = res.json();
-        return respObj;
-      });
+      ).pipe(
+        map((res: Response) => {
+          const respObj = res;
+          return respObj;
+        })
+      );
     }
   }
   checkoutShoppingCart(paymentInfo: any) {
@@ -79,12 +88,13 @@ export class CartService {
     const orderNumber = this.appCookieService.getOrderNumberFromCookie();
     console.log('paymentInfo: ', paymentInfo);
     if (token && orderNumber) {
-      const options = new RequestOptions();
-      options.headers = new Headers({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-
+      const options = {
+        headers: headers
+      };
       return this.http.post(
         environment.REST_API + `/rest/api/order/number/${orderNumber}/makePayment?order_token=${order_token}`, 
         {
@@ -92,10 +102,12 @@ export class CartService {
             amount: paymentInfo.amount
         },
         options
-      ).map((res: Response) => {
-        const respObj = res.json();
-        return respObj;
-      });
+      ).pipe(
+        map((res: Response) => {
+          const respObj = res;
+          return respObj;
+        })
+      );
     }
     
   }
@@ -105,19 +117,22 @@ export class CartService {
     const orderNumber = this.appCookieService.getOrderNumberFromCookie();
     
     if (token && orderNumber) {
-      const options = new RequestOptions();
-      options.headers = new Headers({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-
+      const options = {
+        headers: headers
+      };
       return this.http.get(
         environment.REST_API + `/rest/api/payment/all`, 
         options
-      ).map((res: Response) => {
-        const respObj = res.json();
-        return respObj;
-      });
+      ).pipe(
+        map((res: Response) => {
+          const respObj = res;
+          return respObj;
+        })
+      );
     }
     
   }

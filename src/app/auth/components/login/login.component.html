@@ -1,15 +1,26 @@
-<div class="form-frame">
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+<div class="form-frame login-register-page">
+
+  <div class="row text-center register-or-login-main">
+    <div class="col-12 col-sm-6 register-or-login-selected">
+      <a routerLink="/login">Login</a>
+    </div>
+    <div class="col-12 col-sm-6 register-or-login-other">
+      <a routerLink="/register">Register</a>
+    </div>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-or-register-form">
     <div class="form-group">
-      <label for="userName">Login:</label>
-      <input type="email" formControlName="userName" class="form-control" id="userName" placeholder="user name">
-      <small id="loginHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="userName"></label>
+      <input type="email" formControlName="userName" class="form-control custom-login" id="userName" placeholder="user name">
     </div>
     <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" formControlName="password" class="form-control" id="password" placeholder="password">
+      <label for="password"></label>
+      <input type="password" formControlName="password" class="form-control custom-login" id="password" placeholder="password">
     </div>
-    <button [disabled]="!loginForm.value.password || !loginForm.value.userName || loginForm.status!=='VALID'" type="submit" class="btn btn-primary">Submit</button>
+    <div class="btn-box">
+      <button [disabled]="!loginForm.value.password || !loginForm.value.userName || loginForm.status!=='VALID'" type="submit" class="btn btn-primary login-btn">Submit</button>
+    </div>
   </form>
 </div>
 <div>{{errorMessage}}</div>

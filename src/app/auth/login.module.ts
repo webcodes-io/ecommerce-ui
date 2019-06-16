@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { userLoginReducer } from './store/reducers/login.reducers';
 
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -15,19 +17,19 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'register', component: RegisterComponent},
-  // {path: '**', component: LoginComponent}
-
+  {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     CoreModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    EffectsModule.run(LoginEffects),
-    RouterModule.forChild(routes)
+    StoreModule.forFeature('userLoginReducer', userLoginReducer),
+    EffectsModule.forFeature([LoginEffects])
   ],
   declarations: [
     LoginComponent,

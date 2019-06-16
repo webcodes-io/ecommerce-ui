@@ -3,18 +3,20 @@ import { HeaderComponent } from './header/components/header.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
+    BrowserAnimationsModule,
     CollapseModule.forRoot()
   ],
   declarations: [
     HeaderComponent
   ],
   exports: [
-    HeaderComponent,
-    CollapseModule
+    HeaderComponent
   ],
   providers: [
 

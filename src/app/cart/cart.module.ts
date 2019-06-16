@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { cartReducer } from './store/reducers/cart.reducers';
 import { CartEffects } from './store/effects/cart.effects';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CartCheckoutComponent } from './components/cart-checkout/cart-checkout.component';
+import {StoreModule} from "@ngrx/store";
+
 const routes: Routes = [
   {path: 'cart', component: CartDetailsComponent},
   // {path: 'delivery', component: undefined},
@@ -16,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    EffectsModule.run(CartEffects),
+    EffectsModule.forRoot([CartEffects]),
+    StoreModule.forFeature('cartReducer', cartReducer),
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
