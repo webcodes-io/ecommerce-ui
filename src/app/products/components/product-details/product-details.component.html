@@ -4,29 +4,44 @@
   </div>
   <div class="row">
     <div class="col-6">
-          <a [routerLink]="['/products']">
-            <span class="">Back to products</span>
-          </a>
+      <a [routerLink]="['/products']">
+        <span class="">Back to products</span>
+      </a>
     </div>
   </div>
-  <div class="row thumbnail">
-    <div class="col-sm-4 text-center">
-        <img src="assets/images/teapod.jpeg" class="product-image" alt="product image">
+
+  <div class="row">
+    <div class="col-12 product-name text-center">
+      {{(productDetail$  | async)?.name}}
     </div>
-    <div class="col-sm-8">
-      <div class="row">
-        <div class="col-sm-12 product-name">
-          {{(productDetail$  | async)?.name}}
-        </div>
-        <div class="col-sm-12 product-description">
-          {{(productDetail$ | async)?.description}}
-        </div>
-        <div class="col-sm-12 product-price">
-          {{(productDetail$  | async)?.price}}
+  </div>
+  <div class="row">
+
+    <div class="col-sm-4 text-center product-image">
+      <img src="assets/images/teapod.jpeg" class="" alt="product image">
+    </div>
+
+    <div class="col-sm-8 float-right product-description">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 product-description">
+            <div class="row">
+              <div class="col-5">Description: </div>
+              <div class="col-7">{{(productDetail$  | async)?.description}}</div>
+            </div>
+          </div>
+          <div class="col-12 product-price">
+            <div class="row">
+              <div class="col-5">Price:</div>
+              <div class="col-7">$ {{(productDetail$  | async)?.price}}</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row product-rating">
-        <div class="col-sm-12">
+    </div>
+  </div>
+  <div class="row product-rating">
+    <div class="col-sm-12">
           <span class="align-bottom">
             <i class="glyphicon glyphicon-star-empty"></i>
             <i class="glyphicon glyphicon-star-empty"></i>
@@ -34,13 +49,11 @@
             <i class="glyphicon glyphicon-star-empty"></i>
             <i class="glyphicon glyphicon-star-empty"></i>
           </span>
-        </div>
-      </div>
-      <div class="row product-add-to-card">
-        <div class="col-12 text-center">
-          <button (click)="addToCart()" class="btn btn-primary btn-sm" type="button">Add to cart</button>
-        </div>
-      </div>
+    </div>
+  </div>
+  <div class="row product-add-to-card">
+    <div class="col-12 text-center">
+      <button (click)="addToCart()" class="btn btn-primary btn-sm" type="button">Add to cart</button>
     </div>
   </div>
 </div>
