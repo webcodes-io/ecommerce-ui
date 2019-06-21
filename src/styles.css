@@ -16,6 +16,12 @@
   left: 10px;
   font-size: 1.2rem;
 }
+.product-card:hover .product-description,
+.product-card:hover .product-image {
+  box-shadow: -10px 10px 10px cadetblue;
+  border-radius: 15px;
+  margin-top: 3px;
+}
 .product-price {
   /*margin: 1rem;*/
   font-size: 1.2rem;
@@ -37,8 +43,8 @@
 }
 .sm-screen-product-divider {
   width: 100%;
-  border-top: 3px solid #f8f9fa;
-  box-shadow: 0 3px #f8f9fa;
+  border-top: 3px solid lightblue;
+  box-shadow: 0 3px lightblue;
   margin: 0.5em 0 0.5em 0;
 }
 .submit-order-form {
@@ -200,7 +206,7 @@ app-root + .loading {
 /** END: LOGIN & REGISTER PAGE **/
 .default-page-background {
   background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.8)), url(/assets/images/electronics_background.png);
-  height: 100vh;
+  min-height: 100vh;
   background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
