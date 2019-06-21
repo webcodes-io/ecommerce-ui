@@ -7,7 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { GetCurrentOrderFromStore, CheckOut } from '../../store/actions/cart.actions';
 import { AppStates } from '../../store/states/cart.states';
-import { Order, CheckoutInfo, PaymentMethods } from '../../models/cart.model';
+import { Order, CheckoutInfo, PaymentMethods, PaymentDescription } from '../../models/cart.model';
 import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 import { CartService } from '../../../core/services/cart.service';
@@ -19,10 +19,28 @@ import { Payments } from '../../enums/payments.enum';
   styleUrls: ['./cart-checkout.component.css']
 })
 export class CartCheckoutComponent implements OnInit {
+  public defaultMethodsOfPayment: PaymentDescription[] = [
+      {
+        _id: 1,
+        paymentType: 'cash on delivery'
+      },
+      {
+        _id: 2,
+        paymentType: 'debit'
+      },
+      {
+        _id: 3,
+        paymentType: 'credit'
+      },
+      {
+        _id: 4,
+        paymentType: 'check'
+      }
+    ];
 
   public productsInCart: Observable<Order>;
   private checkOutConfirmationStatus: boolean = false;
-  public methodsOfPayment: Observable<PaymentMethods>;
+  public methodsOfPayment: PaymentDescription[] = this.defaultMethodsOfPayment;
   public error = false;
   private payment = {};
   private totalAmount: number;
@@ -81,7 +99,9 @@ export class CartCheckoutComponent implements OnInit {
     //   this.router.navigate(['/login']);
     this.cartService.getMethodsOfPayment()
     .subscribe((res :any) => {
-      this.methodsOfPayment = res.payments;
+      if(res.payments.length > 0) {
+        this.methodsOfPayment = res.payments;
+      }
     },
     err => console.error(err));
   }
