@@ -38,7 +38,7 @@ export class CartCheckoutComponent implements OnInit {
       }
     ];
 
-  public productsInCart: Observable<Order>;
+  public productsInCart: any;
   private checkOutConfirmationStatus: boolean = false;
   public methodsOfPayment: PaymentDescription[] = this.defaultMethodsOfPayment;
   public error = false;
@@ -50,21 +50,21 @@ export class CartCheckoutComponent implements OnInit {
               private router: Router,
               private cartService: CartService,
                @Inject(FormBuilder) fb: FormBuilder) {
-    
+
     this.checkoutForm = fb.group({
       payment_method_id: [null, Validators.minLength(50)]
     });
-    // app store to list checkout products 
+    // app store to list checkout products
     this.store.select( store => {
         if (store && store['cartReducer']) {
           return store['cartReducer'];
         }
       }
     ).pipe(map(data => {
-        if (data) {
-          return data.currentOrderInCart;
-        }
-    })).subscribe(res => { 
+      if (data) {
+        return data.currentOrderInCart;
+      }
+    })).subscribe(res => {
       this.productsInCart = res.itemList;
     });
 
@@ -75,7 +75,7 @@ export class CartCheckoutComponent implements OnInit {
       if (res && res.currentOrderInCart) {
         return res.currentOrderInCart;
       }
-    })).subscribe(cartInfo => { 
+    })).subscribe(cartInfo => {
       this.totalAmount = cartInfo.totalAmount;
       this.payment = {amount: cartInfo.totalAmount}
     });
@@ -86,7 +86,7 @@ export class CartCheckoutComponent implements OnInit {
       if (res && res.checkOutConfirmationStatus) {
         return res.checkOutConfirmationStatus;
       }
-    })).subscribe(cartInfo => { 
+    })).subscribe(cartInfo => {
       this.checkOutConfirmationStatus = cartInfo;
     });
   }
@@ -127,4 +127,5 @@ export class CartCheckoutComponent implements OnInit {
 
     this.store.dispatch(new CheckOut(this.payment));
   }
+
 }
