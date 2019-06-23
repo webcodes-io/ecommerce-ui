@@ -7,7 +7,7 @@
 
   <div class="text-center checkout-verification-message" *ngIf='!checkOutConfirmationStatus'>Please verify your items and select method of payment</div>
 
-  <div class="text-center checkout-confirmation" *ngIf='checkOutConfirmationStatus'>Thank you! Your order was accepted!</div>
+  <div class="text-center checkout-confirmation" *ngIf='checkOutConfirmationStatus'>Thank you! Your order has been accepted!</div>
 
   <div class="row">
     <div class="col-lg-12">
@@ -51,7 +51,7 @@
   </div>
 
 
-  <form *ngIf='!checkOutConfirmationStatus' [formGroup]="checkoutForm" (ngSubmit)="submitOrder()" class="submit-order-form">
+  <form *ngIf='!checkOutConfirmationStatus' [formGroup]="checkoutForm" class="submit-order-form">
     <div class="form-group">
        <label for="methodPayment">Please select method of payment</label>
        <select formControlName="payment_method_id" class="form-control" name="payment_method_id" id="methodPayment">
@@ -61,10 +61,36 @@
          </option>
        </select>
     </div>
-    <button type="submit"  class="btn btn-primary btn-block">Submit order</button>
+    <button type="submit"  class="btn btn-primary btn-block" (click)="openCheckoutApproveModal(approval_template)">Submit order</button>
   </form>
 
 </div>
+
+<ng-template #approval_template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Order submission</h4>
+    <button type="button" class="close pull-right" aria-label="Close approve submit modal" (click)="closeCheckoutApproveModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Please confirm submission
+    <button type="button" class="btn btn-danger" (click)="submitOrder()">Submit order</button>
+  </div>
+</ng-template>
+
+<ng-template #confirmation_template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Order confirmation</h4>
+    <button type="button" class="close pull-right" aria-label="Close submit order confirmation" (click)="closeCheckoutConfirmationModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Your order has been accepted<br>
+    <button type="button" class="btn btn-primary" (click)="closeCheckoutConfirmationModal()">Ok</button>
+  </div>
+</ng-template>
 
 <!--<alert type="danger" *ngIf='error'>
   <strong>Something went wrong. Please login again. <a href="/logout"> Login </a> </strong>

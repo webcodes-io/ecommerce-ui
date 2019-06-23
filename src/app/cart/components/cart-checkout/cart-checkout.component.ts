@@ -1,6 +1,6 @@
 
 import {map} from 'rxjs/operators';
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit, Inject, TemplateRef, ViewChild} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 import { CartService } from '../../../core/services/cart.service';
 import { Payments } from '../../enums/payments.enum';
+
+import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
@@ -45,10 +47,16 @@ export class CartCheckoutComponent implements OnInit {
   private payment = {};
   private totalAmount: number;
   public checkoutForm: FormGroup;
+
+  modalCheckoutApprove: BsModalRef | null;
+  modalCheckoutConfirmation: BsModalRef;
+  @ViewChild('confirmation_template') confirmation_template: ModalDirective;
+
   constructor(private store: Store<AppStates>,
               private appCookieService: AppCookieService,
               private router: Router,
               private cartService: CartService,
+              private modalService: BsModalService,
                @Inject(FormBuilder) fb: FormBuilder) {
 
     this.checkoutForm = fb.group({
@@ -126,6 +134,20 @@ export class CartCheckoutComponent implements OnInit {
     };
 
     this.store.dispatch(new CheckOut(this.payment));
+    this.modalCheckoutConfirmation = this.modalService.show(this.confirmation_template);
+  }
+
+  openCheckoutApproveModal(template: TemplateRef<any>) {
+    this.modalCheckoutApprove = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  closeCheckoutApproveModal() {
+    this.modalCheckoutApprove.hide();
+  }
+
+  closeCheckoutConfirmationModal() {
+    this.modalCheckoutConfirmation.hide();
+    this.closeCheckoutApproveModal()
   }
 
 }
