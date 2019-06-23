@@ -8,6 +8,7 @@ import { CartEffects } from './store/effects/cart.effects';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CartCheckoutComponent } from './components/cart-checkout/cart-checkout.component';
 import {StoreModule} from "@ngrx/store";
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
   {path: 'cart', component: CartDetailsComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     EffectsModule.forRoot([CartEffects]),
     StoreModule.forFeature('cartReducer', cartReducer),
     RouterModule.forChild(routes),
+    ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
   ],
