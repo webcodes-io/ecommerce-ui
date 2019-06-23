@@ -87,7 +87,7 @@
     border-radius: 12px;
     margin: 2px 0 2px;
     font-family: Overpass;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 800;
     color: steelblue !important;
   }
@@ -98,4 +98,7 @@
 
 .custom-menu-dropdown{
   margin: 0px;
+}
+.shopping_cart_total {
+  width: 51px
 }

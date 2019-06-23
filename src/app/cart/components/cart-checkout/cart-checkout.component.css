@@ -1,16 +1,4 @@
-.checkout-product-image {
-    max-height: 100%;
-    max-width: 100%;
-}
-.checkout-product-name {
-     color:#0066c0;
-}
-.checkout-product-description {
-     color:#0066c0;
-}
-.checkout-product-price {
-     color:indianred;
-}
+
 .checkout-confirmation {
     font-size: 1.1rem;
     color:white;
