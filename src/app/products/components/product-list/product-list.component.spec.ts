@@ -6,6 +6,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AppCookieService } from '../../../core/services/cookie.service';
 import { ProductListComponent } from './product-list.component';
+import {productsReducer} from "../../store/reducers/reducers";
 
 export const fake_routes: Routes = [
   {path: 'products', component: ProductListComponent}
@@ -27,7 +28,7 @@ describe('ProductListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProductListComponent ],
       imports: [
-        StoreModule.provideStore({}),
+        StoreModule.forFeature('productsReducer', productsReducer),
         RouterTestingModule.withRoutes(fake_routes)
       ],
       providers:[
