@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { userLoginReducer } from './store/reducers/login.reducers';
-
+import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { CoreModule } from '../core/core.module';
@@ -25,6 +25,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     CoreModule,
+    AlertModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

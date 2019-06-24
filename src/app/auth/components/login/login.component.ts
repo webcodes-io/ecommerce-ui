@@ -16,7 +16,7 @@ import { LoginAction } from '../../store/actions/login.actions';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  errorMessage: string = null;
+  errorMessage = '';
   userName$;
   user: string;
   constructor(private appCookieService: AppCookieService,
@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
       password: [null, Validators.minLength(3)]
     });
 
-      this.store.select( states => states['userLoginReducer']).pipe(
+      this.store.select( states => {
+        return states['userLoginReducer']
+      }).pipe(
       map((data: any) => {
         if (data && data.registerUser) {
           return data.registerUser;
@@ -57,6 +59,21 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/products']);
         }
     });
+    // Error handing
+    this.store.select( states => {
+      return states['userLoginReducer']
+    }).pipe(
+      map(( data: any) => {
+        if (data && data.errorLoading && data.errorLoading.error) {
+          return data.errorLoading.error;
+        } else {
+          return ;
+        }
+      }))
+      .subscribe(error => {
+        this.errorMessage = error;
+        console.log(error)
+      });
 
 
   }

@@ -34,7 +34,7 @@ describe('ProductDetailsComponent', () => {
     TestBed.configureTestingModule({
         imports: [
             AlertModule,
-            StoreModule.provideStore({}),
+            StoreModule.forRoot({}),
             RouterTestingModule.withRoutes(fake_routes)
         ],
         declarations: [ ProductDetailsComponent ],

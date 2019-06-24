@@ -1,5 +1,9 @@
 <div class="form-frame login-register-page">
 
+  <alert type="danger" *ngIf='errorMessage'>
+    <strong>{{errorMessage.message}} </strong>
+  </alert>
+
   <div class="row text-center register-or-login-main">
     <div class="col-12 col-sm-6 register-or-login-selected">
       <a routerLink="/login">Login</a>
@@ -24,3 +28,4 @@
   </form>
 </div>
 <div>{{errorMessage}}</div>
+
