@@ -32,7 +32,7 @@ export class LoginEffects {
           map((loginData: any) => {
             return new LoginActionSuccess( loginData )
           }),
-          catchError(err => of(new EffectError()))
+          catchError(err => of(new EffectError(err)))
         )
       )
     );
@@ -40,7 +40,7 @@ export class LoginEffects {
       ofType(LOGIN_USER_SUCCESS),
       switchMap((userInfo: any) => this.cartService.getOrderNumber(userInfo).pipe(
           map((orderData: any) => new CreateOrderNumber( orderData )),
-          catchError(err => of(new EffectError()))
+          catchError(err => of(new EffectError(err)))
         )
       )
     );
@@ -49,7 +49,7 @@ export class LoginEffects {
       ofType(LOG_OUT),
       switchMap(() => this.appCookieService.logout().pipe(
           map(() => new FinishCookieClearence()),
-          catchError(err => of(new EffectError()))
+          catchError(err => of(new EffectError(err)))
         )
       )
     );
@@ -58,7 +58,7 @@ export class LoginEffects {
       ofType(REGISTER_USER),
       switchMap((registerUserInfo: any) => this.loginService.register(registerUserInfo.payload).pipe(
           map((registrtionConfirmationData: any) => new RegisterUserSuccess(registrtionConfirmationData)),
-          catchError(err => of(new EffectError()))
+          catchError(err => of(new EffectError(err)))
         )
       )
     );

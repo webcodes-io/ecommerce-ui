@@ -33,6 +33,11 @@ const registerUserSuccess = ( state , action): AppStates => {
   return newData;
 }
 
+const indicateErrorOnLoading = ( state , action): AppStates => {
+ const newData: AppStates = Object.assign({}, state, { errorLoading: action.payload });
+ return newData;
+}
+
 export const userLoginReducer: ActionReducer<AppStates> = (state: AppStates, action: ReducerClass): AppStates => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
@@ -45,6 +50,8 @@ export const userLoginReducer: ActionReducer<AppStates> = (state: AppStates, act
       return logOutUser(state, action);
     case FINISH_COOKIES_CLEARENCE:
       return state;
+    case ERROR_LOADING:
+      return indicateErrorOnLoading(state, action);
     default:
       return state;
   }

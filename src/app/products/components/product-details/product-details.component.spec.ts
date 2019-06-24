@@ -10,6 +10,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { ProductDetailsComponent } from './product-details.component';
 import { LoginService } from '../../../core/services/login.service';
 import { ProductsService } from '../../../core/services/products.service';
+import {productsReducer} from "../../store/reducers/reducers";
 
 export const fake_routes: Routes = [
   {path: 'details/:slug', component: ProductDetailsComponent}
@@ -34,7 +35,7 @@ describe('ProductDetailsComponent', () => {
     TestBed.configureTestingModule({
         imports: [
             AlertModule,
-            StoreModule.provideStore({}),
+            StoreModule.forFeature('productsReducer', productsReducer),
             RouterTestingModule.withRoutes(fake_routes)
         ],
         declarations: [ ProductDetailsComponent ],

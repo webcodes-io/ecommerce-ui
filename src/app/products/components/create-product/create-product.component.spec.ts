@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 import { CreateProductComponent } from './create-product.component';
 import {ProductsService} from '../../../core/services/products.service';
+import {productsReducer} from "../../store/reducers/reducers";
 
 export class ProductsServiceStub {
     getAllProducts(): any {}
@@ -27,7 +28,7 @@ describe('CreateProductComponent', () => {
             imports: [
                 ReactiveFormsModule, 
                 FormsModule,
-                StoreModule.provideStore({})
+                StoreModule.forFeature('productsReducer', productsReducer)
             ],
             providers: [
                 {provide: ProductsService, useClass: ProductsServiceStub},
