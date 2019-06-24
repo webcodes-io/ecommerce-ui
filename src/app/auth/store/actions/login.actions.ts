@@ -43,4 +43,6 @@ export class FinishCookieClearence implements Action {
 
 export class EffectError implements Action {
   readonly type = ERROR_LOADING;
+  constructor(public payload: any ) {
+  }
 }
