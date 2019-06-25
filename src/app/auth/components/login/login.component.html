@@ -12,8 +12,7 @@
       <a routerLink="/register">Register</a>
     </div>
   </div>
-
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-or-register-form">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-or-register-form" [ngClass]="{'loading-form': loading}">
     <div class="form-group">
       <label for="userName"></label>
       <input type="email" formControlName="userName" class="form-control custom-login" id="userName" placeholder="user name">
@@ -23,7 +22,11 @@
       <input type="password" formControlName="password" class="form-control custom-login" id="password" placeholder="password">
     </div>
     <div class="btn-box">
-      <button [disabled]="!loginForm.value.password || !loginForm.value.userName || loginForm.status!=='VALID'" type="submit" class="btn btn-primary login-btn">Submit</button>
+      <button *ngIf="!loading" [disabled]="!loginForm.value.password || !loginForm.value.userName || loginForm.status!=='VALID'" type="submit" class="btn btn-primary login-btn">Submit</button>
+      <button *ngIf="loading"  disabled type="submit" class="btn btn-primary login-btn">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
     </div>
   </form>
 </div>

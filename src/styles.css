@@ -180,12 +180,15 @@ app-root + .loading {
   padding: 5px 50px;
   margin: 20px;
   transition: all .4s;
+  min-width: 194px;
 }
 .login-btn:hover {
   transform: translate3d(1px, 1px, 1px);
   box-shadow: 0 5px 10px rgba(52,152,219, 0.8);
 }
-
+.loading-form {
+  opacity: 0.5;
+}
 .login-btn::after {
   content: "";
   display: inline-block;

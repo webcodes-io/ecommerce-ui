@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage = '';
   userName$;
+  loading = false;
   user: string;
   constructor(private appCookieService: AppCookieService,
               private router: Router,
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
       }))
       .subscribe(res => {
         if (res && res.userName) {
+          this.loading = false;
           this.loginForm.setValue({userName: res.userName, password: null});
         }
       });
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
       }))
       .subscribe(res => {
         if (res && res.token) {
+          this.loading = false;
           this.router.navigate(['/products']);
         }
     });
@@ -72,6 +75,7 @@ export class LoginComponent implements OnInit {
       }))
       .subscribe(error => {
         this.errorMessage = error;
+        this.loading = false;
         console.log(error)
       });
 
@@ -79,6 +83,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.store.dispatch(new LoginAction(this.loginForm.value));
+    this.loading = true;
   }
 
   ngOnInit() {
