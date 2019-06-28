@@ -13,7 +13,7 @@
   </button>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse custom-menu-dropdown" id="bs-example-navbar-collapse-1" [collapse]="isCollapsed" [isAnimated]="true" [ngClass]="{'open-menu' : !isCollapsed, 'close-menu': isCollapsed}">
+    <div class="collapse navbar-collapse custom-menu-dropdown" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="true" >
       <ul class="navbar-nav mr-auto">
         <li *ngIf="user" class="nav-item"><span class="d-flex p-2 user-greeting">{{ user?.userName }}</span></li>
         <li *ngIf="user?.userName" class="nav-item"><a href="/logout" class="nav-link custom-nav-link">Logout</a></li>
@@ -22,3 +22,4 @@
       </ul>
     </div>
 </nav>
+
