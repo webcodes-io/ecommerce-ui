@@ -14,18 +14,18 @@ import { AuthguardService } from '../core/services/authguard.service';
 import { productsReducer } from './store/reducers/reducers';
 import {StoreModule} from '@ngrx/store';
 
-// const routes: Routes = [
-//   {path: 'products', component: ProductListComponent, canActivate: [AuthguardService]},
-//   {path: 'details/:slug', component: ProductDetailsComponent, canActivate: [AuthguardService]},
-//   {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService]},
-//   // {path: '**', component: UsersListComponent}
-// ];
-
 const routes: Routes = [
-  {path: 'products', component: ProductListComponent},
-  {path: 'details/:slug', component: ProductDetailsComponent},
-  {path: 'create-product', component: CreateProductComponent}
+  {path: 'products', component: ProductListComponent, canActivate: [AuthguardService]},
+  {path: 'details/:slug', component: ProductDetailsComponent, canActivate: [AuthguardService]},
+  {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService]},
+  // {path: '**', component: ProductListComponent, canActivate: [AuthguardService]}
 ];
+
+// const routes: Routes = [
+//   {path: 'products', component: ProductListComponent},
+//   {path: 'details/:slug', component: ProductDetailsComponent},
+//   {path: 'create-product', component: CreateProductComponent}
+// ];
 
 @NgModule({
   imports: [

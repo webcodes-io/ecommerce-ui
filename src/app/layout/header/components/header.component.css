@@ -64,15 +64,6 @@
   from {height: 0px;  }
   to   {height: auto; }
 }
-.open-menu {
-  animation-name: open-menu;
-  animation-duration: 0s;
-  height: auto;
-  font-family: 'Overpass', sans-serif;
-  font-size: 20px;
-  margin-left: 15px;
-  color: deepskyblue;
-}
 
 .nav-custom-styles {
   box-shadow: 1px 1px 5px lightgrey;
