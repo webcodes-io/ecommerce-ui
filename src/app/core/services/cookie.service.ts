@@ -21,16 +21,21 @@ export class AppCookieService {
     this.cookieService.set('userName', data.userName );
   }
 
-  public getTokenFromCookie(): any {
-    return this.cookieService.get('token');
-  }
-
   public storeOrderNumberInCookie(data: any): void {
     this.cookieService.set('orderNumber', data.orderNumber);
     this.cookieService.set('orderId', data.id);
   }
 
+  public getTokenFromCookie(): any {
+    return this.cookieService.get('token');
+  }
+  public getUserNameFromCookie(): any {
+    return this.cookieService.get('userName');
+  }
   public getOrderNumberFromCookie(): any {
     return this.cookieService.get('orderNumber');
+  }
+  public getUserIdFromCookie(): any {
+    return this.cookieService.get('userId');
   }
 }
