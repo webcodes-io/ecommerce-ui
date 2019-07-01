@@ -15,3 +15,9 @@
     /*margin: 1em 0 1em 0;*/
     border-radius: 1em;
 }
+.checkout-total {
+  box-shadow: -10px 10px 10px lightblue;
+  border-radius: 15px;
+  margin-top: 3px;
+  font-size: 1.5rem;
+}

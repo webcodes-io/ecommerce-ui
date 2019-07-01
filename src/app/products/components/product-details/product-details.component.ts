@@ -77,4 +77,8 @@ export class ProductDetailsComponent implements OnInit {
     this.selectedQuantity = quantity;
   }
 
+  countSum(price, selectedQuantity) {
+    return Math.round(price * selectedQuantity * 100)/100;
+  }
+
 }
