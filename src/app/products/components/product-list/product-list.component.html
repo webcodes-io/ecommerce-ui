@@ -1,7 +1,4 @@
 <div class="container-fluid default-page-background">
-  <div class="row justify-content-center">
-    <h1 class="current-page text-center">Product list page. Click on any item.</h1>
-  </div>
   <div class="row products-parent-block">
     <div class="col-12" *ngIf="!error">
       <div class="container thumbnail" *ngFor='let product of products$ | async; last as isLast '>

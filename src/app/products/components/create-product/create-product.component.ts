@@ -74,7 +74,6 @@ export class CreateProductComponent implements OnInit {
       
       addProduct() {
         this.submitFormData = Object.assign({}, this.addProductForm.value, { image: this.fileDataUrl } );
-        console.log(this.submitFormData);
-        this.store.dispatch(new CreateNewProduct(this.submitFormData));  
+        this.store.dispatch(new CreateNewProduct(this.submitFormData));
       }
 }

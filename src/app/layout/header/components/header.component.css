@@ -68,6 +68,7 @@
 .nav-custom-styles {
   box-shadow: 1px 1px 5px lightgrey;
   background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.5));
+  box-shadow: -10px -10px 10px #bedff6;
 }
 
 @media only screen and (max-width: 975px) {
@@ -92,4 +93,16 @@
 }
 .shopping_cart_total {
   width: 51px
+}
+
+.selected-page {
+  text-align: center;
+  /*background-color: darkseagreen;*/
+  color: white;
+  font-weight: bold;
+}
+
+.none-selected-page {
+  text-align: center;
+  background: #bedff6;
 }
