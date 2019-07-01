@@ -37,6 +37,7 @@ export interface ProductDetails {
   'price':        number;
   'productInfo':  ProductInfo;
   'id':           number;
+  'defaultMaxQuantity': number;
 }
 
 export interface UserDetails {

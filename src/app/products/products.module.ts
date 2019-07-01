@@ -10,6 +10,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductsEffects } from './store/effects/products.effects';
 import { CoreModule } from '../core/core.module';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { AddToCartComponent } from './components/child-components/add-to-cart/add-to-cart.component';
 import { AuthguardService } from '../core/services/authguard.service';
 import { productsReducer } from './store/reducers/reducers';
 import {StoreModule} from '@ngrx/store';
@@ -23,7 +24,7 @@ const routes: Routes = [
 
 // const routes: Routes = [
 //   {path: 'products', component: ProductListComponent},
-//   {path: 'details/:slug', component: ProductDetailsComponent},
+//   {path: 'details/:slug', component: AddToCartComponent},
 //   {path: 'create-product', component: CreateProductComponent}
 // ];
 
@@ -41,7 +42,8 @@ const routes: Routes = [
   declarations: [
     ProductListComponent,
     ProductDetailsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    AddToCartComponent
   ],
   exports: [
     RouterModule

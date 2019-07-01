@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { AppCookieService } from '../../../core/services/cookie.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
