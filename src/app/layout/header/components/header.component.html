@@ -1,25 +1,57 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top nav-custom-styles">
-  <a class="navbar-brand custom-navbar-label" href="/products"><img class="custom-navbar-image" src="assets/images/20190601_154728.png"/>
-    <!--<span class="hidden-md-down">e-commerce</span>-->
-  </a>
+<div style="position: sticky; top:0; z-index: 3; background-image: linear-gradient(to right bottom, #ffffff, rgba(52, 152, 219, 0.8));">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top nav-custom-styles">
+    <a class="navbar-brand custom-navbar-label" href="/products"><img class="custom-navbar-image" src="assets/images/20190601_154728.png"/>
+      <!--<span class="hidden-md-down">e-commerce</span>-->
+    </a>
 
-  <a *ngIf="(cart$ | async)" [routerLink]="['/cart']" class="nav-link">
-    <img src="assets/images/shopping_cart_total.png" alt="total amount in shopping cart" class="shopping_cart_total">
-    <span> {{(cart$ | async)?.totalAmount}}</span>
-  </a>
+    <a *ngIf="(cart$ | async)" [routerLink]="['/cart']" class="nav-link">
+      <img src="assets/images/shopping_cart_total.png" alt="total amount in shopping cart" class="shopping_cart_total">
+      <span> {{(cart$ | async)?.totalAmount}}</span>
+    </a>
 
-  <button class="navbar-toggler" [ngClass]="{'open-menu-button' : !isCollapsed, 'close-menu-button': isCollapsed}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" [ngClass]="{'open-menu-button' : !isCollapsed, 'close-menu-button': isCollapsed}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="true" >
       <ul class="navbar-nav mr-auto">
         <li *ngIf="user" class="nav-item"><span class="d-flex p-2 user-greeting">{{ user?.userName }}</span></li>
         <li *ngIf="user?.userName" class="nav-item"><a href="/logout" class="nav-link custom-nav-link">Logout</a></li>
-        <li *ngIf="user?.userName" class="nav-item"><a  [routerLink]="['/cart']" class="nav-link custom-nav-link">Cart<span> {{(cart$ | async)?.totalAmount}}</span></a></li>
-        <li *ngIf="user?.userName" class="nav-item"><a  [routerLink]="['/create-product']" class="nav-link custom-nav-link">Create product<span> {{(cart$ | async)?.totalAmount}}</span></a></li>
+        <li *ngIf="user?.userName" class="nav-item"><a  [routerLink]="['/create-product']" class="nav-link custom-nav-link">Create product</a></li>
       </ul>
     </div>
-</nav>
+  </nav>
 
+  <div class="container" *ngIf="user">
+    <div class="row">
+      <div class="col-4 " [ngClass]="{'selected-page': currentUrl == 'Products', 'none-selected-page': currentUrl != 'Products'}">
+        <a [routerLink]="['/products']">
+          <span class="">Products</span>
+        </a>
+      </div>
+      <div class="col-4" [ngClass]="{'selected-page': currentUrl == 'Details', 'none-selected-page': currentUrl != 'Details'}">
+        Details
+      </div>
+      <div class="col-4" [ngClass]="{'selected-page': currentUrl == ('Cart' || 'Checkout'), 'none-selected-page': currentUrl != 'Cart'}">
+        <a [routerLink]="['/cart']">
+          <span class="">Cart</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="currentUrl == 'Cart' || currentUrl == 'Checkout'">
+      <div class="col-6" [ngClass]="{'selected-page': currentUrl == 'Cart', 'none-selected-page': currentUrl != 'Cart'}">
+        <a [routerLink]="['/cart']">
+          <span class="">Cart</span>
+        </a>
+      </div>
+      <div class="col-6" [ngClass]="{'selected-page': currentUrl == 'Checkout', 'none-selected-page': currentUrl != 'Checkout'}">
+        <a [routerLink]="['/checkout']">
+          <span class="">Checkout</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

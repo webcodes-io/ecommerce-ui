@@ -43,13 +43,15 @@ export class AuthguardService implements CanActivate {
       loggedIn = true;
     } else if(this.getUserDetails() && this.getUserDetails()['token'] && !AuthguardService.jwtHelper.isTokenExpired(this.getUserDetails()['token'])) {
       let userDetails = this.getUserDetails();
-      new LoginActionSuccess( {
-        token: userDetails.token,
-        userName: userDetails.userName,
-        id: userDetails.id,
-        orderNumber: userDetails.orderNumber,
-        mobile: undefined
-      });
+      this.store.dispatch(
+        new LoginActionSuccess( {
+          token: userDetails.token,
+          userName: userDetails.userName,
+          id: userDetails.id,
+          orderNumber: userDetails.orderNumber,
+          mobile: undefined
+        })
+      );
       loggedIn = true;
     } else {
       this.router.navigate(['/logout']);
