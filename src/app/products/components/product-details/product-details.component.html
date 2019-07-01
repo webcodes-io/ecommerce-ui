@@ -31,34 +31,16 @@
                 Available on stock:
               </div>
               <div class="col-7">
-                {{((productDetail$  | async)?.defaultMaxQuantity || maxQuantity) - quantity}} pcs
+                {{((productDetail$  | async)?.defaultMaxQuantity || maxQuantity) - selectedQuantity}} pcs
               </div>
             </div>
           </div>
           <div class="col-12 order-quantity">
-            <div class="row product-add-to-card">
-              <div class="col-5">
-                Quantity:
-              </div>
-              <div class="col-7">
-                <div class="row">
-                  <div class="col-12">
-                    <a href="javascript:" (click)="decrementQuantity()" (mousedown)="mousedown('decrementQuantity')" (mouseup)="mouseup('decrementQuantity')" (mouseleave)="mouseup('decrementQuantity')">
-                      <span class="chevron-left"></span>
-                    </a>
-
-                    <input class="input-number-of-items" [ngModel]="quantity" (ngModelChange)="checkIfExceedLimit($event)" id="example-uppercase">
-
-                    <a href="javascript:;" (click)="incrementQuantity()" (mousedown)="mousedown('incrementQuantity')" (mouseup)="mouseup('incrementQuantity')" (mouseleave)="mouseup('incrementQuantity')">
-                      <span class="chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="clo-12 limit-stock-message">
-                    <div class="">{{limitStockMessage}}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <add-to-cart
+              [maxQuantity]="(productDetail$  | async)?.defaultMaxQuantity || maxQuantity"
+              [minQuantity]="minQuantity"
+              (selectedQuantity)="onSelectedQuantity($event)"
+            ></add-to-cart>
           </div>
         </div>
       </div>

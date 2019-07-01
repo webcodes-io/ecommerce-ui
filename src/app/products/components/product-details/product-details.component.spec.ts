@@ -27,7 +27,7 @@ export class ProductsServiceStub {
     create(data?: any): any {}
 }
 
-describe('ProductDetailsComponent', () => {
+describe('AddToCartComponent', () => {
   let component: ProductDetailsComponent;
   let fixture: ComponentFixture<ProductDetailsComponent>;
 
