@@ -21,12 +21,16 @@
                 {{product.product.description}}
               </div>
 
-              <div class="col-sm-12 col-md-6 product-price">
-                {{product.product.price}}
+              <div class="col-4 product-price">
+                $ {{product.product.price}}
               </div>
 
-              <div class="col-sm-12 col-md-6 product-price">
-                {{product.quantity}}
+              <div class="col-4 product-price">
+                {{product.quantity}} pcs
+              </div>
+
+              <div class="col-4 product-price">
+                $ {{ totalSum(product.product.price, product.quantity) }}
               </div>
             </div>
             <div class="row">
@@ -45,6 +49,14 @@
     </div>
   </div>
 
+  <div class="row checkout-total">
+    <div class="col-6">
+      {{totalQuantity}} pcs
+    </div>
+    <div class="col-6">
+      $ {{totalAmount}}
+    </div>
+  </div>
 
   <form *ngIf='!checkOutConfirmationStatus' [formGroup]="checkoutForm" class="submit-order-form">
     <div class="form-group">

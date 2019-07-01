@@ -46,6 +46,7 @@ export class CartCheckoutComponent implements OnInit {
   public error = false;
   private payment = {};
   private totalAmount: number;
+  private totalQuantity: number;
   public checkoutForm: FormGroup;
 
   modalCheckoutApprove: BsModalRef | null;
@@ -73,7 +74,9 @@ export class CartCheckoutComponent implements OnInit {
         return data.currentOrderInCart;
       }
     })).subscribe(res => {
-      this.productsInCart = res.itemList;
+      if(res && res.itemList) {
+        this.productsInCart = res.itemList;
+      }
     });
 
     // app store for total amount
@@ -84,8 +87,11 @@ export class CartCheckoutComponent implements OnInit {
         return res.currentOrderInCart;
       }
     })).subscribe(cartInfo => {
-      this.totalAmount = cartInfo.totalAmount;
-      this.payment = {amount: cartInfo.totalAmount}
+      if(cartInfo && cartInfo.totalAmount && cartInfo.totalAmount) {
+        this.totalAmount = cartInfo.totalAmount;
+        this.totalQuantity = cartInfo.totalQuantity;
+        this.payment = {amount: cartInfo.totalAmount}
+      }
     });
     //checkout confirmation status
     this.store.select( store => {
@@ -148,6 +154,10 @@ export class CartCheckoutComponent implements OnInit {
   closeCheckoutConfirmationModal() {
     this.modalCheckoutConfirmation.hide();
     this.closeCheckoutApproveModal()
+  }
+
+  totalSum(price, selectedQuantity) {
+    return Math.round(price * selectedQuantity * 100)/100;
   }
 
 }
