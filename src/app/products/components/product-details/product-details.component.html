@@ -28,6 +28,16 @@
           <div class="col-12">
             <div class="row product-add-to-card">
               <div class="col-5">
+                Available on stock:
+              </div>
+              <div class="col-7">
+                {{((productDetail$  | async)?.defaultMaxQuantity || maxQuantity) - quantity}} pcs
+              </div>
+            </div>
+          </div>
+          <div class="col-12 order-quantity">
+            <div class="row product-add-to-card">
+              <div class="col-5">
                 Quantity:
               </div>
               <div class="col-7">
