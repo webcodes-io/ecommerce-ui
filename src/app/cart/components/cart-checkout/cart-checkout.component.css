@@ -4,7 +4,7 @@
     color:white;
     background: deepskyblue;
     width: 100%;
-    margin: 1em 0 1em 0;
+    /*margin: 1em 0 1em 0;*/
     border-radius: 1em;
 }
 .checkout-verification-message {
@@ -12,6 +12,6 @@
     color: white;
     width: 100%;
     font-size: 1.1em;
-    margin: 1em 0 1em 0;
+    /*margin: 1em 0 1em 0;*/
     border-radius: 1em;
 }
