@@ -97,8 +97,8 @@
 
 .selected-page {
   text-align: center;
-  /*background-color: darkseagreen;*/
-  color: white;
+  background-color: darkseagreen;
+  color: white !important;
   font-weight: bold;
 }
 

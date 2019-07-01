@@ -39,7 +39,7 @@
   box-shadow: -10px 10px 10px lightblue;
   border-radius: 15px;
   margin-top: 3px;
-  width: 100%;
+  /*width: 100%;*/
 }
 @media only screen and (max-width: 575px) {
   .product-image {
