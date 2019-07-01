@@ -29,6 +29,7 @@ export class CreateProductComponent implements OnInit {
           name: [null, Validators.required],
           description: [null, Validators.minLength(5)],
           price: [null, Validators.required],
+          defaultMaxQuantity: [null, Validators.required],
           slug: [null, Validators.required]
         });
 
