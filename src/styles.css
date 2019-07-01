@@ -39,7 +39,15 @@
   box-shadow: -10px 10px 10px lightblue;
   border-radius: 15px;
   margin-top: 3px;
-  /*width: 100%;*/
+  width: 100%;
+}
+@media only screen and (max-width: 575px) {
+  .product-image {
+    box-shadow: -10px 10px 10px lightblue;
+    border-radius: 15px;
+    margin-top: 3px;
+    width:unset !important;
+  }
 }
 .sm-screen-product-divider {
   width: 100%;
@@ -49,17 +57,6 @@
 }
 .submit-order-form {
   margin: 1em 0 1em 0;
-}
-/*.badge-current-page {
-  background: #007bff ;
-  color: white;
-}*/
-.current-page {
-  background: deepskyblue;
-  color: white;
-  width: 100%;
-  align-items: center;
-  font-size: 1em;
 }
 app-root + .loading {
   display: none;
@@ -185,6 +182,14 @@ app-root + .loading {
 .login-btn:hover {
   transform: translate3d(1px, 1px, 1px);
   box-shadow: 0 5px 10px rgba(52,152,219, 0.8);
+}
+@media only screen and (max-width: 460px) {
+  .login-btn {
+    min-width: unset !important;
+    margin: 20px 0 20px;
+    padding: 5px;
+    width: 100%;
+  }
 }
 .loading-form {
   opacity: 0.5;
