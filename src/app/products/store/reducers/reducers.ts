@@ -20,8 +20,15 @@ const loadProductDetails = ( state: AppStates, action: ReducerClass ): AppStates
 };
 
 const appendError = ( state: AppStates, action: ReducerClass ): AppStates => {
-  const stateWithError: AppStates = Object.assign({}, state, { errorState: {
-    message: 'Server connection error. Probably you need to login.', status: 'error' }} );
+  const stateWithError: AppStates = Object.assign({}, state,
+      {
+        errorState: {
+          message: 'Server connection error. Probably you need to login.',
+          status: 'error',
+          error_code: 'remove_product_error'
+        }
+      }
+    );
   return stateWithError;
 }
 
@@ -35,8 +42,6 @@ const createNewProduct = ( state: AppStates, action: ReducerClass ): AppStates =
 };
 
 const createNewProductSuccess = ( state: AppStates, action: ReducerClass ): AppStates => {
-  console.log('createNewProductSuccess state: ', state);
-  console.log('createNewProductSuccess action: ', action);
   return state;
 };
 
