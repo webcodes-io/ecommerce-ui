@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Injectable } from "@angular/core";
-import { Products, ProductDetails, ProductSlug } from '../../models/products.model';
+import { Products, ProductDetails, ProductSlug, removeProductId, error_message } from '../../models/products.model';
 
 export const GET_PRODUCT_DETAILS = 'GET_PRODUCT_DETAILS';
 export const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
@@ -9,6 +9,7 @@ export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export const ERROR_LOADING ='ERROR_LOADING';
 export const CREATE_NEW_PRODUCT = 'CREATE_NEW_PRODUCT';
 export const CREATE_NEW_PRODUCT_SUCCESS = 'CREATE_NEW_PRODUCT_SUCCESS';
+export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
 export class GetProductDetails implements Action {
   readonly type = GET_PRODUCT_DETAILS;
@@ -42,8 +43,15 @@ export class CreateNewProductSuccess implements Action {
   readonly type = CREATE_NEW_PRODUCT_SUCCESS;
   constructor(public payload: Products ) {
   }
+
+}export class RemoveProduct implements Action {
+  readonly type = REMOVE_PRODUCT;
+  constructor(public payload: removeProductId ) {
+  }
 }
 
 export class EffectError implements Action {
   readonly type = ERROR_LOADING;
+  constructor(public payload?: error_message ) {
+  }
 }
