@@ -5,10 +5,12 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { of ,  Observable } from 'rxjs';
 
-import { GET_PRODUCTS, GET_PRODUCT_DETAILS, CREATE_NEW_PRODUCT,
+import {
+  GET_PRODUCTS, GET_PRODUCT_DETAILS, CREATE_NEW_PRODUCT, REMOVE_PRODUCT,
   GetProductDetails, GetProductsSuccess, GetProductDetailsSuccess, CreateNewProductSuccess,
-  EffectError } from '../actions/products.actions';
-import { ProductDetails } from '../../models/products.model';
+  EffectError, GetProducts
+} from '../actions/products.actions';
+import { ProductDetails, removeProductId } from '../../models/products.model';
 
 import { AppStates } from '../states/app.states';
 import {ProductsService} from '../../../core/services/products.service';
@@ -23,6 +25,7 @@ export class ProductsEffects {
               private getDetailsActions$: Actions,
               private productService: ProductsService,
               private CreateNewProductActions$: Actions,
+              private DeleteProductAction$: Actions,
               private store: Store<AppStates>){}
 
   @Effect() Products$: any = this.actions$.pipe(
@@ -47,6 +50,14 @@ export class ProductsEffects {
       switchMap((productDetails: any) => this.productService.create(productDetails.payload).pipe(
         map( (res: any) => new CreateNewProductSuccess(res) ),
         catchError(err => of(new EffectError()))
+      ))
+    );
+
+  @Effect() DeleteProduct: any = this.DeleteProductAction$.pipe(
+      ofType(REMOVE_PRODUCT),
+      switchMap((removeProduct: any) => this.productService.remove(removeProduct.payload).pipe(
+        map( (res: any) => new GetProducts() ),
+        catchError(err => of(new EffectError({error_message:'remove_product_error'})))
       ))
     );
 

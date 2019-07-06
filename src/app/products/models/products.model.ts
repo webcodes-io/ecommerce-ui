@@ -48,6 +48,13 @@ export interface UserDetails {
   'token':       string;
 }
 
+export interface removeProductId {
+  'id':          number;
+}
+
+export interface error_message {
+  'error_message': string;
+}
 
 export interface Order {
   'id':  number;

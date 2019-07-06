@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppCookieService } from './cookie.service';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
+import {removeProductId} from "../../products/models/products.model";
 
 @Injectable()
 export class ProductsService {
@@ -62,6 +63,25 @@ export class ProductsService {
 
       return this.http.post(
         environment.REST_API + '/rest/api/product/add', data, options
+      ).pipe(
+        map((res: any) => res)
+      );
+    }
+  }
+
+  remove(removeProductId?: removeProductId): Observable<any> {
+    const token = this.appCookieService.getTokenFromCookie();
+    if (token) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
+      const options = {
+        headers: headers
+      };
+
+      return this.http.delete(
+        `${environment.REST_API}/rest/api/product/delete/${removeProductId.id}`, options
       ).pipe(
         map((res: any) => res)
       );
