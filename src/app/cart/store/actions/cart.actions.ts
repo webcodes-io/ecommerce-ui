@@ -9,6 +9,7 @@ export const GET_CURRENT_ORDER_FROM_STORE = 'GET_CURRENT_ORDER_FROM_STORE';
 export const GET_CURRENT_ORDER_FROM_STORE_SUCCESS = 'GET_CURRENT_ORDER_FROM_STORE_SUCCESS';
 export const CHECK_OUT = 'CHECK_OUT';
 export const CHECK_OUT_SUCCESS = 'CHECK_OUT_SUCCESS';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 export class CreateOrderNumber implements Action {
   readonly type = CREATE_ORDER_NUMBER;
@@ -23,6 +24,10 @@ export class AddToCartSuccess implements Action {
   readonly type = ADD_TO_CART_SUCCESS;
   constructor(public payload: any) {
   }  
+}
+export class RemoveFromCart implements Action {
+  readonly type = REMOVE_FROM_CART;
+  constructor(public payload: any) {}
 }
 export class StoreCurrentOrder implements Action {
   readonly type = SAVE_CURRENT_ORDER_IN_STORE;
