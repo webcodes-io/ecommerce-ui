@@ -26,7 +26,7 @@
   <div class="container" *ngIf="user">
     <div class="row">
       <div class="col-4 " [ngClass]="{'selected-page': currentUrl == 'Products', 'none-selected-page': currentUrl != 'Products'}">
-        <a [routerLink]="['/products']">
+        <a [routerLink]="['/products']" [ngClass]="{'selected-page-link': currentUrl == 'Products'}">
           <span class="">Products</span>
         </a>
       </div>
@@ -34,7 +34,7 @@
         Details
       </div>
       <div class="col-4" [ngClass]="{'selected-page': currentUrl == ('Cart' || 'Checkout'), 'none-selected-page': currentUrl != 'Cart'}">
-        <a [routerLink]="['/cart']">
+        <a [routerLink]="['/cart']" [ngClass]="{'selected-page-link': currentUrl == 'Cart'}">
           <span class="">Cart</span>
         </a>
       </div>
@@ -42,12 +42,12 @@
 
     <div class="row" *ngIf="currentUrl == 'Cart' || currentUrl == 'Checkout'">
       <div class="col-6" [ngClass]="{'selected-page': currentUrl == 'Cart', 'none-selected-page': currentUrl != 'Cart'}">
-        <a [routerLink]="['/cart']">
+        <a [routerLink]="['/cart']" [ngClass]="{'selected-page-link': currentUrl == 'Cart'}">
           <span class="">Cart</span>
         </a>
       </div>
       <div class="col-6" [ngClass]="{'selected-page': currentUrl == 'Checkout', 'none-selected-page': currentUrl != 'Checkout'}">
-        <a [routerLink]="['/checkout']">
+        <a [routerLink]="['/checkout']" [ngClass]="{'selected-page-link': currentUrl == 'Checkout'}">
           <span class="">Checkout</span>
         </a>
       </div>
