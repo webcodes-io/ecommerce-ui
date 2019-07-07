@@ -70,10 +70,12 @@
   <strong>Something went wrong. Please login again. <a href="/logout"> Login </a> </strong>
 </alert>
 
+
+
 <ng-template #approval_template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Delete product confirmation</h4>
-    <button type="button" class="close pull-right" aria-label="Cancel delete product button" (click)="deleteProductApproveModal.hide()">
+    <button type="button" class="close pull-right" aria-label="Cancel delete product button" (click)="approveModal.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -84,15 +86,32 @@
   </div>
 </ng-template>
 
+
 <ng-template #confirmation_template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Product removal confirmation</h4>
-    <button type="button" class="close pull-right" aria-label="Close submit order confirmation" (click)="deleteProductConfirmationModal.hide()">
+    <button type="button" class="close pull-right" aria-label="Close submit order confirmation" (click)="confirmationModal.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     Product has been removed<br>
-    <button type="button" class="btn btn-primary" (click)="deleteProductConfirmationModal.hide()" (click)="deleteProductApproveModal.hide()">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="confirmationModal.hide()" (click)="approveModal.hide()">Ok</button>
+  </div>
+</ng-template>
+
+
+<ng-template #error_modal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Error message</h4>
+    <button type="button" class="close pull-right" aria-label="Close submit order confirmation" (click)="errorModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Sorry, there was an error.
+    We are unable to remove the product at the moment.<br>
+    Please try again later or contact administrator.<br>
+    <button type="button" class="btn btn-primary" (click)="errorModal.hide()" (click)="approveModal.hide()" (click)="confirmationModal.hide()">Ok</button>
   </div>
 </ng-template>
