@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppCookieService } from './cookie.service';
-import { map } from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
@@ -56,6 +56,26 @@ export class CartService {
           const respObj = res;
           return respObj;
         })
+      );
+    }
+  }
+  removeProductFromShoppingCart(data: any): Observable<any> {
+    const token = this.appCookieService.getTokenFromCookie();
+    const orderNumber = this.appCookieService.getOrderNumberFromCookie();
+    if (token && orderNumber) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
+      const options = {
+        headers: headers
+      };
+      return this.http.post(
+        environment.REST_API + `/rest/api/item/remove/${orderNumber}`,
+        {
+          'productId': data.payload.id
+        },
+        options
       );
     }
   }

@@ -5,16 +5,19 @@ import { Effect, Actions, ofType } from "@ngrx/effects";
 import { Store, Action } from "@ngrx/store";
 import { of ,  Observable } from 'rxjs';
 
-import { ADD_TO_CART, ADD_TO_CART_SUCCESS, 
-    GET_CURRENT_ORDER_FROM_STORE,
-    CHECK_OUT,
-    AddToCart, AddToCartSuccess, StoreCurrentOrder, 
-    GetCurrentOrderFromStoreSuccess, CheckOutSuccess } from '../actions/cart.actions';
+import {
+  ADD_TO_CART, ADD_TO_CART_SUCCESS,
+  GET_CURRENT_ORDER_FROM_STORE,
+  CHECK_OUT,
+  AddToCart, AddToCartSuccess, StoreCurrentOrder,
+  GetCurrentOrderFromStoreSuccess, CheckOutSuccess, REMOVE_FROM_CART
+} from '../actions/cart.actions';
 //TODO: need to add order models
 
 import { CartService } from '../../../core/services/cart.service'; 
 import { AppStates } from '../../../products/store/states/app.states';
 import {ProductsService} from "../../../core/services/products.service";
+import {EffectError} from "../../../products/store/actions/products.actions";
 
 @Injectable()
 export class CartEffects {
@@ -22,6 +25,7 @@ export class CartEffects {
               private checkoutShoppingCartAtion$: Actions,
               private saveProductsInStoreAPIAction$: Actions,
               private getOrdersFromtStoreAction$ : Actions,
+              private removeFromCartAction$ : Actions,
               private productService: ProductsService,
               private store: Store<AppStates>,
               private cartService: CartService){}
@@ -42,6 +46,14 @@ export class CartEffects {
         catchError(err => of(new Error('error')))
       ))
     );
+  // Remove from cart
+  @Effect() removeFromCart$: any = this.removeFromCartAction$.pipe(
+    ofType(REMOVE_FROM_CART),
+    switchMap((removeProductInfo: any) => this.cartService.removeProductFromShoppingCart(removeProductInfo).pipe(
+      map((data: any) => new AddToCartSuccess( data )),
+      catchError(err => of(new EffectError({error_message:'remove_product_error'})))
+    ))
+  );
     // get order from store
    @Effect() getOrdersFromtStore$: any = this.getOrdersFromtStoreAction$.pipe(
       ofType(GET_CURRENT_ORDER_FROM_STORE),
