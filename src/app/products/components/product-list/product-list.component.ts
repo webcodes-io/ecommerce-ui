@@ -29,7 +29,8 @@ export class ProductListComponent implements OnInit {
   confirmationModal: BsModalRef | null;
   errorModal: BsModalRef | null;
   deleteProduct: ProductDetails;
-  internalDeleteProductMessage: BehaviorSubject<{state:string;}> = new BehaviorSubject({state:undefined});
+  deleteProductState: {action: string; state:string;} = {action: undefined, state:undefined};
+  deleteProductSubject: BehaviorSubject<{action: string; state:string;}> = new BehaviorSubject({action: undefined, state:undefined});
 
   constructor(private store: Store<AppStates>,
               private appCookieService: AppCookieService,
@@ -41,10 +42,11 @@ export class ProductListComponent implements OnInit {
       res => {
         if(res && res['userLoginReducer'] ) {
           if(res['userLoginReducer']['errorLoading']  && res['userLoginReducer']['errorLoading']['error_message'] == 'remove_product_error') {
-            this.internalDeleteProductMessage.next({ state: 'delete_product_error' });
+            Object.assign(this.deleteProductState, { state: 'delete_product_error' });
           } else {
-            this.internalDeleteProductMessage.next({ state: 'no_errors' });
+            Object.assign(this.deleteProductState, { state: 'no_errors' });
           }
+          this.deleteProductSubject.next(this.deleteProductState);
         } if (res && res['productsReducer']) {
           return res['productsReducer'];
         }
@@ -61,6 +63,32 @@ export class ProductListComponent implements OnInit {
       this.store.dispatch(new GetProducts());
     } else
       this.router.navigate(['/login']);
+
+    this.deleteProductSubject.subscribe( (status: any) => {
+
+      if (status.state == 'delete_product_error' && status.action == 'delete_product') {
+
+        if (this.confirmationModal) {
+          this.confirmationModal.hide();
+        }
+        if (this.approveModal) {
+          this.approveModal.hide();
+        }
+        if (!this.errorModal) {
+          this.errorModal = this.modalService.show(this.error_modal, {class: 'modal-lg'});
+        } else {
+        }
+
+      } else if (status.state == 'no_error' && status.action == 'delete_product') {
+          if(this.errorModal) {this.errorModal.hide()}
+          if(!this.confirmationModal) {this.confirmationModal = this.modalService.show(this.confirmation_template, { class: 'modal-lg' })}
+        }
+
+      else {
+
+      }
+
+    });
   }
 
   removeItemFromProductList() {
@@ -69,26 +97,13 @@ export class ProductListComponent implements OnInit {
         id : this.deleteProduct.id
       }
     ));
-
-    this.internalDeleteProductMessage.subscribe( (status: any) => {
-        switch (status.state) {
-          case 'delete_product_error':
-            if(this.confirmationModal) { this.confirmationModal.hide()}
-            this.errorModal = this.modalService.show(this.error_modal, { class: 'modal-lg' });
-            break;
-          case 'no_errors':
-            if(this.errorModal) {this.errorModal.hide()}
-            this.confirmationModal = this.modalService.show(this.confirmation_template, { class: 'modal-lg' });
-            break;
-          default:
-        }
-      });
-
-
+    Object.assign(this.deleteProductState, { action: 'delete_product', state: 'no_errors' });
+    this.deleteProductSubject.next(this.deleteProductState);
   }
 
   deleteProductConfirmation(template: TemplateRef<any>, deleteProduct: ProductDetails) {
     this.deleteProduct = deleteProduct;
+    this.errorModal = null;
     this.approveModal = this.modalService.show(template, { class: 'modal-lg' });
   }
 
