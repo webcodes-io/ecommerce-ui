@@ -1,28 +1,42 @@
 <div class="container-fluid default-page-background">
-  <div class="row">
+  <div class="row" *ngFor='let product of productsInCart'>
+    <div class="col-10 product-name text-center">
+      {{product.product.name}}
+    </div>
+    <div class="col-2 text-right">
+      <button type="button" class="close remove-from-cart" aria-label="Close" (click)="deleteProductConfirmation(approval_template, product.product)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="col-lg-12">
-      <div class="row thumbnail product-card" *ngFor='let product of productsInCart'>
+      <div class="row thumbnail product-card">
         <div class="col-sm-12 col-md-4 text-center">
             <img class="product-image" src="/assets/images/teapod.jpeg" alt="image of {{product.product.name}}">
         </div>
         <div class="col-sm-12 col-md-8">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-sm-12 col-md-12 product-name">
-                {{product.product.name}}
-              </div>
 
-              <div class="col-sm-12 col-md-12 product-description">
+              <div class="col-12 product-description">
                 {{product.product.description}}
               </div>
 
-              <div class="col-sm-12 col-md-6 product-price">
-                {{product.product.price}}
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-4 product-price">
+                    {{product.product.price}}
+                  </div>
+
+                  <div class="col-4 product-price">
+                    {{product.quantity}}
+                  </div>
+
+                  <div class="col-4 product-price">
+                    $ {{ totalSum(product.product.price, product.quantity) }}
+                  </div>
+              </div>
               </div>
 
-              <div class="col-sm-12 col-md-6 product-price">
-                {{product.quantity}}
-              </div>
             </div>
             <div class="row">
               <span class="align-bottom product-rating">
@@ -40,6 +54,48 @@
     </div>
   </div>
 </div>
+
+<ng-template #approval_template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Approval</h4>
+    <button type="button" class="close pull-right" aria-label="Cancel removal from shopping cart" (click)="approveModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Please confirm you want to remove "{{deleteProduct.name}}" from your order.</p>
+    <button type="button" class="btn btn-danger" (click)="removeItemFromOrder()">Remove from order</button>
+  </div>
+</ng-template>
+
+<ng-template #confirmation_template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Confirmation</h4>
+    <button type="button" class="close pull-right" aria-label="Close modal of removal from shopping cart" (click)="confirmationModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Product has been removed from shopping cart<br>
+    <button type="button" class="btn btn-primary" (click)="confirmationModal.hide()" (click)="approveModal.hide()">Ok</button>
+  </div>
+</ng-template>
+
+
+<ng-template #error_modal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Error message</h4>
+    <button type="button" class="close pull-right" aria-label="Close error message" (click)="errorModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Sorry, there was an error.
+    We are unable to remove the item from shopping cart at the moment.<br>
+    Please try again later or contact administrator.<br>
+    <button type="button" class="btn btn-primary" (click)="errorModal.hide()" >Ok</button>
+  </div>
+</ng-template>
 
 <!--<alert type="danger" *ngIf='error'>
   <strong>Something went wrong. Please login again. <a href="/logout"> Login </a> </strong>
