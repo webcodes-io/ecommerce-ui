@@ -98,8 +98,12 @@
 .selected-page {
   text-align: center;
   background-color: darkseagreen;
-  color: white !important;
+  color: white;
   font-weight: bold;
+}
+
+.selected-page-link {
+  color: white;
 }
 
 .none-selected-page {
