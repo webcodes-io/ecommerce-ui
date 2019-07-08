@@ -1,0 +1,38 @@
+<div class="form-frame default-page-background">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+
+      <div class="col-10">
+        <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+          <div class="form-group">
+            <label for="productName">Product name:</label>
+            <input type="text" formControlName="name" class="form-control" id="productName" placeholder="product name">
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" formControlName="description" class="form-control" id="description" placeholder="product description">
+          </div>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="text" formControlName="price" class="form-control" id="price" placeholder="price">
+          </div>
+          <div class="form-group">
+            <label for="defaultMaxQuantity">Maximum one time purchase quantity:</label>
+            <input type="text" formControlName="defaultMaxQuantity" class="form-control" id="defaultMaxQuantity" placeholder="maximum quantity">
+          </div>
+          <div class="form-group">
+            <label for="slug">Unique sub-path of product details URL:</label>
+            <input type="text" formControlName="slug" class="form-control" id="slug" placeholder="unique sub-path">
+          </div>
+          <button [disabled]="!addProductForm.value.name || !addProductForm.value.price || addProductForm.status!=='VALID'" type="submit" class="btn btn-primary">Add</button>
+        </form>
+      </div>
+
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+</div>
+<!--<div>{{errorMessage}}</div>-->

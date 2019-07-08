@@ -69,7 +69,31 @@ export class ProductsService {
     }
   }
 
+  uploadProductImage(imageDetails: {file: File, productId: number}): Observable<any> {
+
+    const token = this.appCookieService.getTokenFromCookie();
+    const uploadImage = new FormData();
+
+    uploadImage.append('uploads[]', imageDetails['file'], imageDetails['file']['name']);
+
+    if (token) {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+      const options = {
+        headers: headers
+      };
+
+      return this.http.post(
+        environment.REST_API + `/rest/api/image/add/${imageDetails.productId}`, uploadImage, options
+      ).pipe(
+        map((res: any) => res)
+      );
+    }
+  }
+
   remove(removeProductId?: removeProductId): Observable<any> {
+
     const token = this.appCookieService.getTokenFromCookie();
     if (token) {
       const headers = new HttpHeaders({

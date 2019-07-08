@@ -10,6 +10,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductsEffects } from './store/effects/products.effects';
 import { CoreModule } from '../core/core.module';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { AddDetailsComponent } from './components/create-product/add-details/add-details.component';
+import { UploadImagesComponent } from './components/create-product/upload-images/upload-images.component';
 import { AddToCartComponent } from './components/child-components/add-to-cart/add-to-cart.component';
 import { AuthguardService } from '../core/services/authguard.service';
 import { productsReducer } from './store/reducers/reducers';
@@ -18,7 +20,13 @@ import {StoreModule} from '@ngrx/store';
 const routes: Routes = [
   {path: 'products', component: ProductListComponent, canActivate: [AuthguardService]},
   {path: 'details/:slug', component: ProductDetailsComponent, canActivate: [AuthguardService]},
-  {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService]},
+  {path: 'create-product', component: CreateProductComponent, canActivate: [AuthguardService],
+    children: [
+      {path: '', redirectTo: 'add-details', pathMatch: 'full'},
+      {path: 'add-details', component: AddDetailsComponent},
+      {path: 'upload-images/:slug', component: UploadImagesComponent}
+    ]
+  }
   // {path: '**', component: ProductListComponent, canActivate: [AuthguardService]}
 ];
 
@@ -43,7 +51,9 @@ const routes: Routes = [
     ProductListComponent,
     ProductDetailsComponent,
     CreateProductComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    AddDetailsComponent,
+    UploadImagesComponent
   ],
   exports: [
     RouterModule
