@@ -107,4 +107,12 @@ export class ProductListComponent implements OnInit {
     this.approveModal = this.modalService.show(template, { class: 'modal-lg' });
   }
 
+  getProductUrl(product) {
+    if(product && product.productInfo && product.productInfo.imageList.length > 0) {
+      return product.productInfo.imageList[0]['imageUrl'];
+    } else {
+      return  '/assets/images/teapod.jpeg';
+    }
+  }
+
 }

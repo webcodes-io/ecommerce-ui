@@ -36,7 +36,7 @@ export interface ProductDetails {
   'slug':         string;
   'price':        number;
   'productInfo':  ProductInfo;
-  'id':           number;
+  'id'?:           number;
   'defaultMaxQuantity': number;
 }
 

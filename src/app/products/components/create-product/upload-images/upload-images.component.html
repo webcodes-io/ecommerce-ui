@@ -1,0 +1,62 @@
+<!--<div class="form-frame default-page-background">-->
+
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-1"></div>-->
+
+      <!--<div class="col-10">-->
+        <!--<form [formGroup]="addProductForm" (ngSubmit)="addProduct()">-->
+          <!--<div class="form-group">-->
+            <!--<label for="image-file-upload">Upload image file:</label>-->
+            <!--<input #image type="file" id="image-file-upload" (change)="uploadImage()">-->
+          <!--</div>-->
+          <!--<button [disabled]="!addProductForm.value.name || !addProductForm.value.price || addProductForm.status!=='VALID'" type="submit" class="btn btn-primary">Add</button>-->
+        <!--</form>-->
+      <!--</div>-->
+
+      <!--<div class="col-1"></div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+<!--</div>-->
+<!--<div>{{errorMessage}}</div>-->
+
+
+<div class="container-fluid default-page-background">
+  <div class="row">
+    <div class="col-12 product-name text-center">
+      {{(productDetail$  | async)?.name}}
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-12 float-right product-description">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 product-description">
+            <div class="row">
+              <div class="col-5">Description: </div>
+              <div class="col-7">{{(productDetail$  | async)?.description}}</div>
+            </div>
+          </div>
+          <div class="col-12 product-price">
+            <div class="row">
+              <div class="col-5">Price:</div>
+              <div class="col-7">$ {{(productDetail$  | async)?.price}}</div>
+            </div>
+          </div>
+          <div class="col-12 images-content">
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4" *ngFor="let image of (productDetail$  | async)?.productInfo.imageList">
+                <img class="upload-images"
+                     [src]="image.imageUrl" alt="product image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <label for="image-file-upload">Select image file (max 1Mb):</label>
+  <input #image type="file" id="image-file-upload" (change)="uploadImage($event)">
+  <button (click)="uploadImageFile()">Upload file</button>
+</div>

@@ -1,8 +1,10 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { AppStates } from '../states/app.states';
-import { GET_PRODUCT_DETAILS, GET_PRODUCTS, GET_PRODUCT_DETAILS_SUCCESS, 
-  CREATE_NEW_PRODUCT, CREATE_NEW_PRODUCT_SUCCESS, GET_PRODUCTS_SUCCESS, 
-  ERROR_LOADING  } from '../actions/products.actions';
+import {
+  GET_PRODUCT_DETAILS, GET_PRODUCTS, GET_PRODUCT_DETAILS_SUCCESS,
+  CREATE_NEW_PRODUCT, CREATE_NEW_PRODUCT_SUCCESS, GET_PRODUCTS_SUCCESS,
+  ERROR_LOADING, UPLOAD_PRODUCT_IMAGE_SUCCESS
+} from '../actions/products.actions';
 
 export class ReducerClass implements Action {
   type: string;
@@ -41,8 +43,12 @@ const createNewProduct = ( state: AppStates, action: ReducerClass ): AppStates =
   return state;
 };
 
+const uploadProductImageSuccess = ( state: AppStates, action: ReducerClass ): AppStates => {
+  return Object.assign({}, state, { imageUploaded: action.payload} );
+};
+
 const createNewProductSuccess = ( state: AppStates, action: ReducerClass ): AppStates => {
-  return state;
+  return Object.assign({}, state, { productCreated: action.payload} );
 };
 
 export const productsReducer: ActionReducer<AppStates> = (state: AppStates, action: ReducerClass): AppStates => {
@@ -57,6 +63,8 @@ export const productsReducer: ActionReducer<AppStates> = (state: AppStates, acti
       return loadProducts(state, action);
     case CREATE_NEW_PRODUCT:
       return createNewProduct(state, action);
+    case UPLOAD_PRODUCT_IMAGE_SUCCESS:
+      return uploadProductImageSuccess(state, action);
     case CREATE_NEW_PRODUCT_SUCCESS:
       return createNewProductSuccess(state, action);
     case ERROR_LOADING:
