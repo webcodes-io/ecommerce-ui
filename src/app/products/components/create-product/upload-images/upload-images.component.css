@@ -1,0 +1,10 @@
+.upload-images {
+  width: 100%;
+  box-shadow: 2px 2px 2px lightslategrey;
+  margin: 1rem;
+  border-radius: 6px;
+}
+.images-content {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}

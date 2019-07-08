@@ -27,8 +27,8 @@ export class ProductDetailsComponent implements OnInit {
   public maxQuantity = 10;
   public minQuantity = 1;
   public productDetail$: Observable<ProductDetails>;
-
   private productId: string;
+
   constructor(private store: Store<AppStates>,
               private loginService: LoginService,
               private router: Router,
@@ -79,6 +79,14 @@ export class ProductDetailsComponent implements OnInit {
 
   countSum(price, selectedQuantity) {
     return Math.round(price * selectedQuantity * 100)/100;
+  }
+
+  getProductUrl(product) {
+    if(product && product.imageList.length > 0) {
+      return product.imageList[0]['imageUrl'];
+    } else {
+      return  '/assets/images/teapod.jpeg';
+    }
   }
 
 }

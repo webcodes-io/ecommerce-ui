@@ -34,19 +34,24 @@
 .product-add-to-card {
 
 }
-.product-description,
+.product-description {
+  box-shadow: -10px 10px 10px lightblue;
+  border-radius: 15px;
+  margin-top: 3px;
+}
+
 .product-image {
   box-shadow: -10px 10px 10px lightblue;
   border-radius: 15px;
   margin-top: 3px;
-  /*width: 100%;*/
+  width: 20vw;
 }
 @media only screen and (max-width: 575px) {
   .product-image {
     box-shadow: -10px 10px 10px lightblue;
     border-radius: 15px;
     margin-top: 3px;
-    width:unset !important;
+    width: 100%;
   }
 }
 .sm-screen-product-divider {

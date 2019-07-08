@@ -6,9 +6,9 @@ import { Store, Action } from '@ngrx/store';
 import { of ,  Observable } from 'rxjs';
 
 import {
-  GET_PRODUCTS, GET_PRODUCT_DETAILS, CREATE_NEW_PRODUCT, REMOVE_PRODUCT,
+  GET_PRODUCTS, GET_PRODUCT_DETAILS, CREATE_NEW_PRODUCT, REMOVE_PRODUCT, UPLOAD_PRODUCT_IMAGE,
   GetProductDetails, GetProductsSuccess, GetProductDetailsSuccess, CreateNewProductSuccess,
-  EffectError, GetProducts
+  EffectError, GetProducts, uploadImageSuccess
 } from '../actions/products.actions';
 import { ProductDetails, removeProductId } from '../../models/products.model';
 
@@ -25,6 +25,7 @@ export class ProductsEffects {
               private getDetailsActions$: Actions,
               private productService: ProductsService,
               private CreateNewProductActions$: Actions,
+              private UploadProductImageActions$: Actions,
               private DeleteProductAction$: Actions,
               private store: Store<AppStates>){}
 
@@ -50,6 +51,14 @@ export class ProductsEffects {
       switchMap((productDetails: any) => this.productService.create(productDetails.payload).pipe(
         map( (res: any) => new CreateNewProductSuccess(res) ),
         catchError(err => of(new EffectError()))
+      ))
+    );
+
+  @Effect() UploadProductImage$: any = this.UploadProductImageActions$.pipe(
+      ofType(UPLOAD_PRODUCT_IMAGE),
+      switchMap((imageDetails: any) => this.productService.uploadProductImage(imageDetails.payload).pipe(
+        map( (res: any) => new uploadImageSuccess(res) ),
+        catchError(err => of(new EffectError(err)))
       ))
     );
 
