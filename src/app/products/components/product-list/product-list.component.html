@@ -18,7 +18,7 @@
 
           <div class="col-sm-4 text-center product-image">
             <a [routerLink]="['/details/' + product?.slug]" class="">
-              <img class="product-image" [src]="getProductUrl(product)" alt="{{product.name}}">
+              <img class="product-image" [src]="getProductUrl(product)" onerror="this.onerror=null;this.src='/assets/images/teapod.jpeg';" alt="{{product.name}}">
             </a>
           </div>
 

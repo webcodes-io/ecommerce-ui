@@ -1,9 +1,10 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { AppStates } from '../states/app.states';
+import { initStateOfProductDetails } from '../../models/products.model';
 import {
   GET_PRODUCT_DETAILS, GET_PRODUCTS, GET_PRODUCT_DETAILS_SUCCESS,
   CREATE_NEW_PRODUCT, CREATE_NEW_PRODUCT_SUCCESS, GET_PRODUCTS_SUCCESS,
-  ERROR_LOADING, UPLOAD_PRODUCT_IMAGE_SUCCESS
+  ERROR_LOADING, UPLOAD_PRODUCT_IMAGE_SUCCESS, RESET_PRODUCT_DETAILS
 } from '../actions/products.actions';
 
 export class ReducerClass implements Action {
@@ -18,6 +19,11 @@ const loadProductSlug = ( state: AppStates, action: ReducerClass ): AppStates =>
 
 const loadProductDetails = ( state: AppStates, action: ReducerClass ): AppStates => {
   const newData: AppStates = Object.assign({}, state, { uiStateProductDetails: action.payload} );
+  return newData;
+};
+
+const resetProductDetails = ( state: AppStates, action: ReducerClass ): AppStates => {
+  const  newData: AppStates = Object.assign({}, state, { uiStateProductDetails: initStateOfProductDetails} );
   return newData;
 };
 
@@ -59,6 +65,8 @@ export const productsReducer: ActionReducer<AppStates> = (state: AppStates, acti
       return loadProductDetails(state, action);
     case GET_PRODUCTS:
       return state;
+    case RESET_PRODUCT_DETAILS:
+      return resetProductDetails(state, action);
     case GET_PRODUCTS_SUCCESS:
       return loadProducts(state, action);
     case CREATE_NEW_PRODUCT:

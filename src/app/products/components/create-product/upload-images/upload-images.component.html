@@ -44,10 +44,10 @@
               <div class="col-7">$ {{(productDetail$  | async)?.price}}</div>
             </div>
           </div>
-          <div class="col-12 images-content">
+          <div class="col-12 images-container">
             <div class="row">
               <div class="col-12 col-md-6 col-lg-4" *ngFor="let image of (productDetail$  | async)?.productInfo.imageList">
-                <img class="upload-images"
+                <img class="image-product-details"
                      [src]="image.imageUrl" alt="product image">
               </div>
             </div>

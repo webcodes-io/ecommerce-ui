@@ -109,7 +109,8 @@ export class ProductListComponent implements OnInit {
 
   getProductUrl(product) {
     if(product && product.productInfo && product.productInfo.imageList.length > 0) {
-      return product.productInfo.imageList[0]['imageUrl'];
+      return product.productInfo.imageList[0]['imageUrl'] ? product.productInfo.imageList[0]['imageUrl'] :
+        product.productInfo.imageList[0]['largeUrl'] ? product.productInfo.imageList[0]['largeUrl'] : '/assets/images/teapod.jpeg';
     } else {
       return  '/assets/images/teapod.jpeg';
     }
