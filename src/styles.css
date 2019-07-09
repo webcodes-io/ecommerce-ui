@@ -46,6 +46,16 @@
   margin-top: 3px;
   width: 20vw;
 }
+.image-product-details {
+  width: 100%;
+  box-shadow: 2px 2px 2px lightslategrey;
+  margin: 1rem;
+  border-radius: 6px;
+}
+.images-container {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
 @media only screen and (max-width: 575px) {
   .product-image {
     box-shadow: -10px 10px 10px lightblue;

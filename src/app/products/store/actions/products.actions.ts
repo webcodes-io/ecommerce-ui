@@ -5,6 +5,7 @@ import { Products, ProductDetails, ProductSlug, removeProductId, error_message }
 export const GET_PRODUCT_DETAILS = 'GET_PRODUCT_DETAILS';
 export const GET_PRODUCT_DETAILS_SUCCESS = 'GET_PRODUCT_DETAILS_SUCCESS';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const RESET_PRODUCT_DETAILS = 'RESET_PRODUCT_DETAILS';
 export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export const ERROR_LOADING ='ERROR_LOADING';
 export const CREATE_NEW_PRODUCT = 'CREATE_NEW_PRODUCT';
@@ -17,6 +18,10 @@ export class GetProductDetails implements Action {
   readonly type = GET_PRODUCT_DETAILS;
   constructor(public payload: ProductSlug ) {
   }
+}
+
+export class ResetProductDetails implements Action {
+  readonly type = RESET_PRODUCT_DETAILS;
 }
 
 export class GetProductDetailsSuccess implements Action {

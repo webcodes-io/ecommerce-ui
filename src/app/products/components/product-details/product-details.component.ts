@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../../../core/services/products.service';
-import { GetProductDetails } from '../../store/actions/products.actions';
+import { GetProductDetails, ResetProductDetails } from '../../store/actions/products.actions';
 import { AddToCart } from '../../../cart/store/actions/cart.actions';
 import { AppStates } from '../../store/states/app.states';
 import { LoginService } from "../../../core/services/login.service";
@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   public show = true;
   public slug: string;
@@ -73,6 +73,10 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.store.dispatch(new ResetProductDetails());
+  }
+
   onSelectedQuantity(quantity) {
     this.selectedQuantity = quantity;
   }
@@ -83,8 +87,11 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductUrl(product) {
     if(product && product.imageList.length > 0) {
-      return product.imageList[0]['imageUrl'];
-    } else {
+      let url = product.imageList[0]['imageUrl'] ? product.imageList[0]['imageUrl'] :
+        product.imageList[0]['largeUrl'] ? product.imageList[0]['largeUrl'] : '/assets/images/teapod.jpeg';
+      console.log(url);
+      return url;
+    } else if(product && product.imageList.length == 0) {
       return  '/assets/images/teapod.jpeg';
     }
   }
