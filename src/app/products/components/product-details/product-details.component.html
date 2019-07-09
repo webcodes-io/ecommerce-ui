@@ -6,8 +6,10 @@
   </div>
   <div class="row align-items-center">
 
-    <div class="col-sm-4 text-center product-image">
-      <img [src]="getProductUrl((productDetail$  | async)?.productInfo)" class="product-image" alt="product image">
+    <div *ngIf="(productDetail$  | async)" class="col-sm-4 text-center product-image">
+      <img [src]="getProductUrl((productDetail$  | async)?.productInfo)"
+           onerror="this.onerror=null;this.src='/assets/images/teapod.jpeg';"
+           class="product-image" alt="product image">
     </div>
 
     <div class="col-sm-8 float-right product-description">
@@ -66,6 +68,14 @@
             <i class="glyphicon glyphicon-star-empty"></i>
             <i class="glyphicon glyphicon-star-empty"></i>
           </span>
+    </div>
+  </div>
+  <div class="col-12 images-container">
+    <div class="row" *ngIf="(productDetail$  | async)?.productInfo">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let image of (productDetail$  | async)?.productInfo.imageList">
+        <img class="image-product-details"
+             [src]="image.imageUrl" alt="product image">
+      </div>
     </div>
   </div>
 </div>

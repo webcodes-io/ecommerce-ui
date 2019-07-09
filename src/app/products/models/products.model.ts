@@ -40,6 +40,16 @@ export interface ProductDetails {
   'defaultMaxQuantity': number;
 }
 
+export const initStateOfProductDetails = {
+  'name':               undefined,
+  'description':        undefined,
+  'slug':               undefined,
+  'price':              undefined,
+  'productInfo':        undefined,
+  'id':                 undefined,
+  'defaultMaxQuantity': undefined
+};
+
 export interface UserDetails {
   'id':          number;
   'userName':    string;

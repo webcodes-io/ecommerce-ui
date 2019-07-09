@@ -112,4 +112,15 @@ export class CartDetailsComponent implements OnInit {
     this.approveModal = this.bsModalService.show(template, { class: 'modal-lg' });
   }
 
+  getProductUrl(product) {
+    if(product && product.imageList.length > 0) {
+      let url = product.imageList[0]['imageUrl'] ? product.imageList[0]['imageUrl'] :
+        product.imageList[0]['largeUrl'] ? product.imageList[0]['largeUrl'] : '/assets/images/teapod.jpeg';
+      console.log(url);
+      return url;
+    } else if(product && product.imageList.length == 0) {
+      return  '/assets/images/teapod.jpeg';
+    }
+  }
+
 }
