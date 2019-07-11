@@ -12,13 +12,13 @@
   height: 45px;
 }
 .product-description {
-  position: relative;
-  left: 10px;
-  font-size: 1.2rem;
+  /*position: relative;*/
+  /*left: 10px;*/
+  /*font-size: 1.2rem;*/
 }
 .product-card:hover .product-description,
 .product-card:hover .product-image {
-  box-shadow: -10px 10px 10px cadetblue;
+  /*box-shadow: -10px 10px 10px cadetblue;*/
   border-radius: 15px;
   margin-top: 3px;
 }
@@ -196,7 +196,7 @@ app-root + .loading {
 }
 .login-btn:hover {
   transform: translate3d(1px, 1px, 1px);
-  box-shadow: 0 5px 10px rgba(52,152,219, 0.8);
+  /*box-shadow: 0 5px 10px rgba(52,152,219, 0.8);*/
 }
 @media only screen and (max-width: 460px) {
   .login-btn {
