@@ -1,7 +1,7 @@
 import {map} from 'rxjs/operators';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
-
+import {TranslateService} from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -35,8 +35,10 @@ export class ProductListComponent implements OnInit {
   constructor(private store: Store<AppStates>,
               private appCookieService: AppCookieService,
               private router: Router,
-              private modalService: BsModalService
+              private modalService: BsModalService,
+              translate: TranslateService
             ) {
+    translate.use('en');
 
     this.products$ = this.store.select(
       res => {
@@ -99,6 +101,7 @@ export class ProductListComponent implements OnInit {
     ));
     Object.assign(this.deleteProductState, { action: 'delete_product', state: 'no_errors' });
     this.deleteProductSubject.next(this.deleteProductState);
+    this.approveModal.hide();
   }
 
   deleteProductConfirmation(template: TemplateRef<any>, deleteProduct: ProductDetails) {

@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {TranslateService} from '@ngx-translate/core';
 import { ProductsService } from '../../../core/services/products.service';
 import { GetProductDetails, ResetProductDetails } from '../../store/actions/products.actions';
 import { AddToCart } from '../../../cart/store/actions/cart.actions';
@@ -33,7 +33,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
               private loginService: LoginService,
               private router: Router,
               private productsService: ProductsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private translateService: TranslateService) {
+
+    translateService.use('en');
+
     this.productDetail$ = this.store.select(store => {
       if (store && store['productsReducer']) {
         return store['productsReducer'];
