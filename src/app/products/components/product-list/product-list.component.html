@@ -27,19 +27,19 @@
               <div class="row">
                 <div class="col-12 product-description">
                   <div class="row">
-                    <div class="col-5">Description: </div>
+                    <div class="col-5">{{ 'product.productDescription' | translate }}: </div>
                     <div class="col-7">{{product.description}}</div>
                   </div>
                 </div>
                 <div class="col-12 product-price">
                   <div class="row">
-                    <div class="col-5">Price:</div>
+                    <div class="col-5">{{ 'product.price' | translate }}:</div>
                     <div class="col-7">$ {{product.price}}</div>
                   </div>
                 </div>
                 <div class="col-12" *ngIf="product.defaultMaxQuantity">
                   <div class="row">
-                    <div class="col-5">Quantity:</div>
+                    <div class="col-5">{{ 'product.quantity' | translate }}:</div>
                     <div class="col-7">{{product.defaultMaxQuantity}}</div>
                   </div>
                 </div>
