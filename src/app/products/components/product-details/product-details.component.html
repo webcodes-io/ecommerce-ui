@@ -17,13 +17,13 @@
         <div class="row">
           <div class="col-12 product-description">
             <div class="row">
-              <div class="col-5">Description: </div>
+              <div class="col-5">{{ 'product.productDescription' | translate }}: </div>
               <div class="col-7">{{(productDetail$  | async)?.description}}</div>
             </div>
           </div>
           <div class="col-12 product-price">
             <div class="row">
-              <div class="col-5">Price:</div>
+              <div class="col-5">{{ 'product.price' | translate }}:</div>
               <div class="col-7">$ {{(productDetail$  | async)?.price}}</div>
             </div>
           </div>
@@ -46,7 +46,7 @@
           </div>
           <div class="col-12">
             <div class="row">
-              <div class="col-5">Sum:</div>
+              <div class="col-5">{{ 'product.sum' | translate }}:</div>
               <div class="col-7">$ {{countSum( (productDetail$  | async)?.price,  selectedQuantity )}}</div>
             </div>
           </div>
@@ -54,7 +54,7 @@
       </div>
       <div class="row text-center">
         <div class="col-12 add-to-cart">
-          <button (click)="addToCart()" class="btn btn-primary btn-sm" type="button">Add to cart</button>
+          <button (click)="addToCart()" class="btn btn-primary btn-sm" type="button">{{ 'product.price' | translate }}</button>
         </div>
       </div>
     </div>
