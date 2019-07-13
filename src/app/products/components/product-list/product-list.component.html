@@ -1,11 +1,11 @@
 <div class="container-fluid default-page-background">
   <div class="row products-parent-block">
     <div class="col-12" *ngIf="!error">
-      <div class="container thumbnail" *ngFor='let product of products$ | async; last as isLast '>
+      <div class="container thumbnail product-details-container" *ngFor='let product of products$ | async; last as isLast '>
 
         <div class="row">
           <div class="col-10 product-name text-center">
-            {{product.name}}
+            {{product.name | titlecase}}
           </div>
           <div class="col-2 text-right">
             <button type="button" class="close custom-close" aria-label="Close" (click)="deleteProductConfirmation(approval_template, product)">
@@ -24,26 +24,22 @@
 
           <div class="col-sm-8 float-right product-description">
             <div class="container-fluid">
-              <div class="row">
-                <div class="col-12 product-description">
-                  <div class="row">
-                    <div class="col-5">{{ 'product.productDescription' | translate }}: </div>
-                    <div class="col-7">{{product.description}}</div>
+
+                  <div class="row product-description">
+                    <div class="col-5 col-xs-12">{{ 'product.productDescription' | translate }}: </div>
+                    <div class="col-7 col-xs-12">{{product.description}}</div>
                   </div>
-                </div>
-                <div class="col-12 product-price">
-                  <div class="row">
-                    <div class="col-5">{{ 'product.price' | translate }}:</div>
-                    <div class="col-7">$ {{product.price}}</div>
+
+                  <div class="row product-price">
+                    <div class="col-5 col-xs-12">{{ 'product.price' | translate }}:</div>
+                    <div class="col-7 col-xs-12">$ {{product.price}}</div>
                   </div>
-                </div>
-                <div class="col-12" *ngIf="product.defaultMaxQuantity">
-                  <div class="row">
-                    <div class="col-5">{{ 'product.quantity' | translate }}:</div>
-                    <div class="col-7">{{product.defaultMaxQuantity}}</div>
+
+                  <div class="row" *ngIf="product.defaultMaxQuantity">
+                    <div class="col-5 col-xs-12">{{ 'product.quantity' | translate }}:</div>
+                    <div class="col-7 col-xs-12">{{product.defaultMaxQuantity}}</div>
                   </div>
-                </div>
-              </div>
+
               <div class="row">
               <span class="align-bottom product-rating">
                 <i class="glyphicon glyphicon-star-empty"></i>
@@ -56,7 +52,7 @@
             </div>
           </div>
 
-          <div class="sm-screen-product-divider" *ngIf="!isLast"></div>
+          <!--<div class="sm-screen-product-divider" *ngIf="!isLast"></div>-->
 
         </div>
 
