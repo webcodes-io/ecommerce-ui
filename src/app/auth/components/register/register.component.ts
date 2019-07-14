@@ -12,7 +12,7 @@ import { RegisterUserAction } from '../../store/actions/login.actions';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 

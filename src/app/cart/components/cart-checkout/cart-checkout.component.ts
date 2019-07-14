@@ -18,7 +18,7 @@ import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal'
 @Component({
   selector: 'app-home',
   templateUrl: './cart-checkout.component.html',
-  styleUrls: ['./cart-checkout.component.css']
+  styleUrls: ['./cart-checkout.component.scss']
 })
 export class CartCheckoutComponent implements OnInit {
   public defaultMethodsOfPayment: PaymentDescription[] = [
