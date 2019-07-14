@@ -15,7 +15,7 @@ import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal'
 @Component({
   selector: 'app-home',
   templateUrl: './cart-details.component.html',
-  styleUrls: ['./cart-details.component.css']
+  styleUrls: ['./cart-details.component.scss']
 })
 export class CartDetailsComponent implements OnInit {
 

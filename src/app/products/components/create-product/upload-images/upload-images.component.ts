@@ -12,7 +12,7 @@ import {ProductDetails} from "../../../models/products.model";
 
 @Component({
   templateUrl: './upload-images.component.html',
-  styleUrls: ['./upload-images.component.css']
+  styleUrls: ['./upload-images.component.scss']
 })
 export class UploadImagesComponent implements OnInit {
 

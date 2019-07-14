@@ -11,7 +11,7 @@ import {map} from 'rxjs/operators';
 @Component({
   selector: 'create-product',
   templateUrl: './add-details.component.html',
-  styleUrls: ['./add-details.component.css']
+  styleUrls: ['./add-details.component.scss']
 })
 export class AddDetailsComponent implements OnInit {
 
