@@ -6,7 +6,7 @@ import { AppStates } from '../../../store/states/app.states';
 @Component({
   selector: 'add-to-cart',
   templateUrl: './add-to-cart.component.html',
-  styleUrls: ['./add-to-cart.component.css']
+  styleUrls: ['./add-to-cart.component.scss']
 })
 export class AddToCartComponent implements OnInit {
 

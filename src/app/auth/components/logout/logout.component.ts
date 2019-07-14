@@ -9,7 +9,7 @@ import {AppCookieService} from '../../../core/services/cookie.service';
 @Component({
   selector: 'logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
 
