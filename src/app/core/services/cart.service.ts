@@ -73,7 +73,7 @@ export class CartService {
       return this.http.post(
         environment.REST_API + `/rest/api/item/remove/${orderNumber}`,
         {
-          '_id': data.payload.id
+          'itemId': data.payload.id
         },
         options
       );
